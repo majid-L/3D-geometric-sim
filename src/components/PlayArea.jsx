@@ -3,28 +3,21 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { GameControlsContext, boardArray } from "../contexts/GameControlsContext";
 import PhysicsScene from "./PhysicsScene";
-
+import { useLocation } from "react-router-dom";
+import TwoDimensionalBoard from "./TwoDimensionalBoard";
 
 function PlayArea({setBoardConfiguration}) {
-const [{isRunning, configuration, wrap, interact, interval, physics}, setGameParameters] = useState({
-        isRunning: false,
-        configuration: boardArray,
-        wrap: true,
-        interact: true,
-        interval: 500,
-        title: true,
-        username: 'andy09',
-        effect: 'sky',
-        physics: false
-    });
-
-  const { controls } = useContext(GameControlsContext);
+  const { controls, gameParameters: {isRunning, configuration, wrap, interact, interval, physics}, setGameParameters } = useContext(GameControlsContext);
  
   const gameRef = useRef(isRunning);
   gameRef.current = isRunning;
 
+  const url = useLocation().pathname;
+
   useEffect(() => {
-    setBoardConfiguration(configuration.length - 1);
+    if(url[1] === "3") {
+      setBoardConfiguration(configuration.length - 1);
+    };
   }, []);
 
   useEffect(() => {
@@ -107,14 +100,16 @@ const [{isRunning, configuration, wrap, interact, interval, physics}, setGamePar
     return cellCoords;
   };
 
-  if (physics) {
+  if (url[1] === '3' && physics) {
     return <PhysicsScene></PhysicsScene>
-  } else {
+  } else if (url[1] === '3') {
     return (
       boardConfig(configuration).map(cell => {
         return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} isRunning={isRunning}/>
        })
     );
+  } else if (url[1] === '2') {
+    return <TwoDimensionalBoard/>
   }
 }
 export default PlayArea;
