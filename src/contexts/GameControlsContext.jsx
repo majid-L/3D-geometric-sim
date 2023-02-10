@@ -47,7 +47,8 @@ export const GameControlsProvider = ({children}) => {
         username: 'andy09',
         effect: 'sky',
         physics: false,
-        boardStyle: 'threeDimensional'
+        boardStyle: 'threeDimensional',
+        sizeModifier: 0
     });
 
     return <GameControlsContext.Provider value={{controls, setControls, texture, gameParameters, setGameParameters}}>
