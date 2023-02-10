@@ -44,9 +44,9 @@ export const GameControlsProvider = ({children}) => {
         interval: 500,
         title: true,
         username: 'vp-mkVII',
-        effect: 'sky',
         physics: false,
         boardStyle: 'threeDimensional',
+        floating3DText: true,
         sizeModifier: 0
     });
 
