@@ -17,7 +17,7 @@ function Zoom() {
   };
 
 function ThreeDimensionalGame() {
-  const [boardConfiguration, setBoardConfiguration] = useState('');
+  //const [boardConfiguration, setBoardConfiguration] = useState('');
 
   return (
   <main id="three-d-main">
@@ -33,8 +33,8 @@ function ThreeDimensionalGame() {
     <OrbitControls/>
     <Suspense fallback={null}>
     <Center>
-      <PlayArea setBoardConfiguration={setBoardConfiguration}/>
-      {boardConfiguration && <Table boardConfiguration={boardConfiguration}/>}
+      <PlayArea />
+      <Table />
     </Center>
     </Suspense>
   </Canvas>
