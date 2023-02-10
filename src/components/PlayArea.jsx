@@ -41,6 +41,22 @@ function PlayArea() {
       gameRef.current = false;
       setGameParameters(prev => ({...prev, isRunning: false, configuration: boardArray, sizeModifier: 0}));
 
+    } else if(button === "randomise") {
+      const randomBoard = [];
+      for (let i = 0; i < configuration.length; i++) {
+        randomBoard.push(Array.from(Array(configuration.length), () => {
+          return Math.random() > 0.7 ? 1 : 0;
+        }));
+      };
+      setGameParameters(prev => ({...prev, isRunning: false, configuration: randomBoard}));
+
+    } else if (button === "clear") {
+      const emptyBoard = [];
+      for (let i = 0; i < configuration.length; i++) {
+        emptyBoard.push(Array.from(Array(configuration.length), () => 0));
+      };
+      setGameParameters(prev => ({...prev, isRunning: false, configuration: emptyBoard}));
+
     } else if (button === "edge") {
       setGameParameters(prev => ({...prev, wrap: false}));
 
