@@ -30,7 +30,6 @@ body,
 main,
 .App {
   background-color: #242424 !important;
-  min-height: 100vh;
   width: 100vw;
 }
 
@@ -53,6 +52,7 @@ main.tutorial {
   margin: 10px auto;
   padding-bottom: 60px;*/
 }
+
 
 img.tutorial_img {
   display: flow-root;
@@ -120,6 +120,7 @@ body,
 
 .anim {
   position: absolute;
+  height: 95.8vh;
   width: 100%;
   top: 57px;
 }
@@ -150,7 +151,6 @@ a:hover {
 }
 
 body {
-  height: auto;
   margin: 0;
   place-items: center;
   min-width: 320px;
@@ -165,7 +165,8 @@ h1 {
 }
 
 .patterns_h1,
-.tutorial_h1 {
+.tutorial_h1,
+.users_h1 {
   margin-top: 70px;
   padding: 30px;
 }
@@ -182,7 +183,6 @@ h1 {
 }
 
 button {
-  border-radius: 0 !important;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-weight: 500;
@@ -199,12 +199,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.patternsGrid {
-  gap: 1px;
-  width: fit-content;
-  margin: 10px auto 20px;
-}
-
 .form-label {
   color: black
 }
@@ -212,13 +206,19 @@ button:focus-visible {
 div.card {
   margin: 20px 10px;
   padding: 4px;
+  height: 520px
 }
 
 .card-body {
   height: 430px;
 }
 
-.patterns_list {
+.user_card {
+  height: 200px !important;
+  margin: 0 !important
+}
+
+.patterns_list, .users_list {
   margin: auto;
   width: 95%;
   display: grid;
@@ -232,6 +232,7 @@ div.card {
   position: absolute;
   bottom: 10px;
   left: 20px;
+  background-color: #FA64C8 !important;
 }
 
 .card-img-top {
@@ -246,6 +247,19 @@ div.card {
   top: 0;
   z-index: 999;
 }
+
+div.container {
+  margin: 0;
+  width: 100%;
+}
+
+/* div.container > * {
+  width: 200px
+} */
+
+/* a.nav-link {
+  width: 100px
+} */
 
 div.modal {
   margin-top: 500px;
@@ -294,6 +308,11 @@ div.user_title {
   border-radius: 0 !important;
 }
 
+.two-d-controls {
+  display: flex;
+  justify-content: center;
+}
+
 
 #effects {
   /*border-radius: 10px !important;
@@ -304,13 +323,15 @@ div.user_title {
 }
 
 #three-d-btn-group #start {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
 }
 
 #three-d-btn-group #save {
-  border-bottom-left-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 0;
 }
 
 button#save {
