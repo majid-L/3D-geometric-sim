@@ -2,15 +2,20 @@ import img from "../assets/green.png";
 import * as THREE from "three";
 import { Float, Text3D, useMatcapTexture } from "@react-three/drei";
 import retro from '../assets/retro.json';
-import { useContext } from "react";
-import { GameControlsContext } from "../contexts/GameControlsContext";
+import { useContext, useEffect, useState } from "react";
+import { GameControlsContext, boardArray } from "../contexts/GameControlsContext";
 
-function Table({boardConfiguration}) {
+function Table() {
   //const texture = new THREE.TextureLoader().load(img);
-  const boxLength = boardConfiguration;
+ //const [boxLength, setBoxLength] = useState('');
+  
+  const {controls, texture, gameParameters: {configuration}} = useContext(GameControlsContext);
+  //const boxLength = configuration.length - 1;
 
-  const {controls, texture} = useContext(GameControlsContext);
-
+  //useEffect(() => {
+  //  setBoxLength(configuration.length - 1)
+  //}, [sizeModifier]);
+  const boxLength = configuration.length - 1;
   function MatCap({texture}) {
     const [matcap] = useMatcapTexture(texture, 256);
     return <meshMatcapMaterial matcap={matcap} />
