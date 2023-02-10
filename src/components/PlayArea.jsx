@@ -6,7 +6,7 @@ import PhysicsScene from "./PhysicsScene";
 import { useLocation } from "react-router-dom";
 import TwoDimensionalBoard from "./TwoDimensionalBoard";
 
-function PlayArea() {
+function PlayArea({setEffect, setBloom, bloom}) {
   const { controls, setControls, gameParameters: {isRunning, configuration, wrap, interact, interval, physics, sizeModifier}, setGameParameters } = useContext(GameControlsContext);
  
   const gameRef = useRef(isRunning);
@@ -83,14 +83,19 @@ function PlayArea() {
     } else if (button === 'smaller') {
       const newConfig = structuredClone(configuration).filter((m, i, arr) => i < arr.length - 1).map(m => m.filter((m, i, arr) => i < arr.length - 1));
       setGameParameters(prev => ({...prev, configuration : newConfig, sizeModifier: prev.sizeModifier - 1}));
-  }
+    } else if (button === "stars" || button === "sky") {
+      setEffect(button);
+    } else if (button === "bloom") {
+      setBloom(!bloom);
+    } else if (button === "toggleText") {
+      setGameParameters(prev => ({...prev, floating3DText: !prev.floating3DText}));
+    }
   }, [controls]);
   
   const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
   
   const runGame = () => {
     if (!gameRef.current) return;
-    //const newGameGrid = structuredClone(configuration);
     const newGameGrid = configuration.map(m => m.map(m => m));
 
     for (let i = 0; i < configuration.length; i++) {
@@ -141,7 +146,7 @@ function PlayArea() {
   } else if (url[1] === '3') {
     return (
       boardConfig(configuration).map(cell => {
-        return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} isRunning={isRunning}/>
+        return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} isRunning={isRunning} bloom={bloom}/>
        })
     );
   } else if (url[1] === '2') {
