@@ -34,7 +34,7 @@ function ThreeDimensionalGame() {
     <PerspectiveCamera makeDefault fov={75} position={[35, 30, 15]}/>
     <Zoom/>
     {effect === "stars" && <Stars radius={80} depth={50} count={7000} factor={5} saturation={0} fade speed={1}/>}
-    {effect === "sky" && <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
+    {effect === "sky" && <Sky sunPosition={[0, 1, 3]} exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
     <Sparkles {...props}/>
     <pointLight position={[10, 0, 10]}/>
     <CameraControls/>
@@ -55,13 +55,13 @@ function ThreeDimensionalGame() {
 export default ThreeDimensionalGame;
 
 const props = {
-    /** Number of particles (default: 100) */ count: 20000,
+    /** Number of particles (default: 100) */ count: 30000,
     /** Speed of particles (default: 1) */
-    speed: 1,
+    speed: 2,
     /** Opacity of particles (default: 1) */
     opacity: 1,
     /** Color of particles (default: 100) */
-    color: 100,
+    color: [100, 100, 50],
     /** Size of particles (default: randomized between 0 and 1) */
     size: 5,
     /** The space the particles occupy (default: 1) */
