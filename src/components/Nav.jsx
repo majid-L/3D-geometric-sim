@@ -21,12 +21,16 @@ useEffect(() => {
   })
 }, []);
 
-function handleClick(pattern) {
+function handleClick(patternBody) {
   return () => {
-    setGameParameters(prev => ({...prev, configuration: pattern.split(" ").map(m => m.split("").map(m => +m))}));
-    navigate("3dgame");
+    const pattern = patternBody.split(" ").map(m => m.split("").map(m => +m));
+    //Array.from(Array(configuration.length), () => 0);
+    setGameParameters(prev => ({...prev, isRunning: false, configuration: pattern}));
+   // navigate("3dgame");
   };
 };
+
+const featuredPatterns = ["Glider", "Gosper glider gun", "LWSS", "Beacon", "Toad", "HWSS", "Penta-deca", "Superlative", "Cloverleaf", "Alien craft"];
 
 return (
   <>
@@ -36,9 +40,20 @@ return (
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <NavDropdown title="Patterns" id="collasible-nav-dropdown">
+          <NavDropdown title="Custom patterns" id="collasible-nav-dropdown">
             {patterns.length && patterns.map((pattern, i, arr) => {
               if (i < 20) {
+                 return <NavDropdown.Item key={pattern._id} onClick={handleClick(pattern.pattern_body)}>"{pattern.pattern_name}"</NavDropdown.Item>
+              }
+            })}
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={() => navigate("patterns")}>
+              All patterns
+            </NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Featured patterns" id="collasible-nav-dropdown">
+            {patterns.length && patterns.map(pattern => {
+              if (featuredPatterns.includes(pattern.pattern_name)) {
                  return <NavDropdown.Item key={pattern._id} onClick={handleClick(pattern.pattern_body)}>"{pattern.pattern_name}"</NavDropdown.Item>
               }
             })}
