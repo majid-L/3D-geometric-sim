@@ -5,6 +5,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { GameControlsContext } from '../contexts/GameControlsContext';
+import {SizeIcon, SpeedIcon} from './Icons';
 
 const InteractTooltip = (
     <Tooltip id="tooltip">
@@ -12,9 +13,10 @@ const InteractTooltip = (
     </Tooltip>
   );
 
+
 const GameControls = () => {
 
-const { controls, setControls } = useContext(GameControlsContext);
+const { controls, setControls, gameParameters: {isRunning} } = useContext(GameControlsContext);
 
 const handleClick = e => {
   let click = 0;
@@ -22,6 +24,8 @@ const handleClick = e => {
 
   if (e.target.id === "faster" || e.target.id === "slower") {
     setControls({button: e.target.id, speedModifier: ++click});
+  } else if (e.target.id === "larger" || e.target.id === "smaller") {
+    setControls({button: e.target.id, sizeModifier: ++click});
   } else {
     setControls(prev => ({...prev, button: e.target.id}))
   }
@@ -35,9 +39,12 @@ return (
   <Button disabled={condition} id="start" variant="secondary">Start</Button>
   <Button disabled={condition} id="stop" variant="secondary">Stop</Button>
   <Button disabled={condition} id="reset" variant="secondary">Reset</Button>
-  <Button disabled={condition} id="faster" variant="secondary">🡱 faster</Button>
-  <Button disabled={condition} id="slower" variant="secondary">🡳 slower</Button>
-  
+  <Button disabled={condition} id="faster" variant="secondary"><SpeedIcon/> Faster</Button>
+  <Button disabled={condition} id="slower" variant="secondary">Slower</Button>
+
+  <Button disabled={condition || isRunning} id="larger" variant="secondary"><SizeIcon/>Larger</Button>
+  <Button disabled={condition || isRunning} id="smaller" variant="secondary">Smaller</Button>
+
   <DropdownButton disabled={condition} as={ButtonGroup} title="3D/2D" className="bg-nested-dropdown">
    <Dropdown.Item id="threeD" eventKey="1">3D</Dropdown.Item>
    <Dropdown.Item id="twoD" eventKey="2">2D</Dropdown.Item>
@@ -59,6 +66,9 @@ return (
    <Dropdown.Item id="enablePhysics" eventKey="1">Enable</Dropdown.Item>
    <Dropdown.Item id="disablePhysics" eventKey="2">Disable</Dropdown.Item>
  </DropdownButton>
+ <Button variant="primary" id="save" onClick={() => {}}>
+        Save pattern
+      </Button>
 </ButtonGroup>
 </section>)
 };
