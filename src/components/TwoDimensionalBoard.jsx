@@ -16,8 +16,8 @@ return (<>
           return <div key={uuidv4()} className={configuration[i][k] === 1 ? "cellgridliving" : "cellgriddead"} onClick={() => {
             if (interact === true && !isRunning) {
               setGameParameters(prev => {
-                const newConfig = structuredClone(prev.configuration);
-                newConfig[position[0]][position[2]] = living ? 0 : 1;
+                const newConfig = structuredClone(configuration);
+                newConfig[i][k] = configuration[i][k] ? 0 : 1;
                 return {...prev, configuration: newConfig};
               })
             };
