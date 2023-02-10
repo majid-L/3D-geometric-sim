@@ -9,7 +9,7 @@ function Table() {
   //const texture = new THREE.TextureLoader().load(img);
  //const [boxLength, setBoxLength] = useState('');
   
-  const {controls, texture, gameParameters: {configuration}} = useContext(GameControlsContext);
+  const {controls, texture, gameParameters: {configuration, floating3DText}} = useContext(GameControlsContext);
   //const boxLength = configuration.length - 1;
 
   //useEffect(() => {
@@ -18,6 +18,7 @@ function Table() {
   const boxLength = configuration.length - 1;
   function MatCap({texture}) {
     const [matcap] = useMatcapTexture(texture, 256);
+
     return <meshMatcapMaterial matcap={matcap} />
   };
 
@@ -77,7 +78,7 @@ function Table() {
         <boxGeometry args={[1, 0.6, boxLength + 3]}/>
       </mesh>
 
-      <mesh position = {[-4, 5, -5]}>
+      {floating3DText && <mesh position = {[2, 5, -5]}>
       <Float speed={2.4} rotationIntensity={2} floatIntensity={2} floatingRange={[0, 1]}>
       <Text3D 
       font={retro}
@@ -89,7 +90,7 @@ function Table() {
       bevelThickness={0.02}
       bevelOffset={0}
       bevelSegments={5}>AUTOMATRIX<MatCap texture={'422509_C89536_824512_0A0604'}/></Text3D>
-      </Float></mesh>
+      </Float></mesh>}
     </>
   );
 }
