@@ -11,7 +11,7 @@ import { GameControlsContext } from "../contexts/GameControlsContext";
 function Navigation() {
 const [showSidebar, setShowSidebar] = useState(false);
 const [patterns, setPatterns] = useState([]);
-const { gameParameters: { configuration }, setGameParameters } = useContext(GameControlsContext);
+const { gameParameters: { configuration, username }, setGameParameters } = useContext(GameControlsContext);
 
 const navigate = useNavigate();
 
@@ -69,8 +69,9 @@ return (
           <Nav.Link onClick={() => navigate("user")}>My patterns</Nav.Link>
         </Nav>
         <Nav>
+          <Nav.Link onClick={() => navigate("users")}>Users</Nav.Link>
           <Nav.Link onClick={() => setShowSidebar(true)}>Game tips</Nav.Link>
-          <Nav.Link onClick={() => navigate("login")}>Login</Nav.Link>
+          <Nav.Link onClick={() => navigate("login")}>Hi, {username}!</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Container>
