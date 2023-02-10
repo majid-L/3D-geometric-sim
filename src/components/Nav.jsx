@@ -3,15 +3,75 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HiddenSidebar from './HiddenSidebar';
+import { getPatterns } from "../api";
+import { GameControlsContext } from "../contexts/GameControlsContext";
 
 function Navigation() {
 const [showSidebar, setShowSidebar] = useState(false);
+const [patterns, setPatterns] = useState([]);
+const { gameParameters: { configuration }, setGameParameters } = useContext(GameControlsContext);
 
 const navigate = useNavigate();
 
-  return (
+useEffect(() => {
+  getPatterns().then(({data : {patterns}}) => {
+    setPatterns(patterns);
+  })
+}, []);
+
+function handleClick(pattern) {
+  return () => {
+    setGameParameters(prev => ({...prev, configuration: pattern.split(" ").map(m => m.split("").map(m => +m))}));
+    navigate("3dgame");
+  };
+};
+
+return (
+  <>
+  <Navbar id="nav" collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Container>
+      <Navbar.Brand onClick={() => navigate("/")}>Automatrix</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="me-auto">
+          <NavDropdown title="Patterns" id="collasible-nav-dropdown">
+            {patterns.length && patterns.map((pattern, i, arr) => {
+              if (i < 20) {
+                 return <NavDropdown.Item key={pattern._id} onClick={handleClick(pattern.pattern_body)}>"{pattern.pattern_name}"</NavDropdown.Item>
+              }
+            })}
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={() => navigate("patterns")}>
+              All patterns
+            </NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Link onClick={() => navigate("tutorial")}>How to play</Nav.Link>
+          <Nav.Link onClick={() => navigate("3dgame")}>3D game</Nav.Link>
+          <Nav.Link onClick={() => navigate("2dgame")}>2D game</Nav.Link>
+          <Nav.Link onClick={() => navigate("patterns")}>All patterns</Nav.Link>
+          <Nav.Link onClick={() => navigate("user")}>My patterns</Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link onClick={() => setShowSidebar(true)}>Game tips</Nav.Link>
+          <Nav.Link onClick={() => navigate("login")}>Login</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+  <HiddenSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
+  </>
+);
+  
+}
+
+export default Navigation;
+
+
+/*
+
+return (
     <>
     <Navbar id="nav" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -43,6 +103,5 @@ const navigate = useNavigate();
     <HiddenSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
     </>
   );
-}
 
-export default Navigation;
+*/
