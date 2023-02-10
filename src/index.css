@@ -132,7 +132,8 @@ body,
 
 .game-controls {
   position: absolute;
-  bottom: 5vh;
+  bottom: 20vh;
+  left: 4vw;
   z-index: 100;
   transform: translateY(20%);
   transform: translateX(20%);
@@ -188,10 +189,9 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 0 !important;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -278,12 +278,23 @@ div.user_title {
   height: 40px;
 }
 
-button.btn-secondary,
-#bg-nested-dropdown,
-button.dropdown-toggle,
+.btn-group {
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.btn-group > * {
+  width: 120px
+}
+
+#start {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}
+
 #save {
-  font-size: 18px;
-  border: 1px solid white;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
 }
 
 button#save {
@@ -322,7 +333,7 @@ button#save {
   width: auto;
   height: auto;
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+  border-radius: 3px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -332,7 +343,6 @@ button#save {
 .cellboard {
   margin: auto auto 10vh;
   display: grid;
-  gap: 1px;
   width: 60vh;
   height: 60vh;
   border: 1px white solid;
@@ -343,7 +353,7 @@ button#save {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 1.5em;
+  border-radius: 10px;
 }
 .cellgridliving {
   display: flex;
@@ -354,7 +364,7 @@ button#save {
   height: auto;
   /* From https://css.glass */
   background: rgba(245, 31, 217, 0.594);
-  border-radius: 10px;
+  border-radius: 3px;
   box-shadow: 0 0 1px 2px rgba(18, 239, 255, 0.959);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -376,38 +386,25 @@ button#save {
   #bg-nested-dropdown,
   button.dropdown-toggle,
   #save {
-    font-size: 24px;
-    height: 50px;
+    font-size: 20px;
   }
 
   #effects {
     margin: -10px 0 0 -80px;
   }
-
-  .button-module {
-    margin: 10px 0;
-    width: auto;
+  .btn-group > * {
+    width: 145px
   }
 }
 
 @media (min-width: 1600px) {
-  button.btn-secondary,
+  /* button.btn-secondary,
   #bg-nested-dropdown,
   button.dropdown-toggle,
   #save,
   #effects {
     border-radius: 0;
-  }
-
-  #start {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-
-  #save {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
+  } */
 
   .game-controls {
     transform: translateX(10%);
