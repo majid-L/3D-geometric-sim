@@ -139,6 +139,13 @@ body,
   transform: translateX(20%);
 }
 
+.game-alerts {
+  position: absolute;
+  bottom: 70vh;
+  width: 100%;
+  z-index: 100;
+}
+
 #effects {
   border-radius: 10px !important;
   margin: -33px 30px;
@@ -284,7 +291,7 @@ div.user_title {
 }
 
 .btn-group > * {
-  width: 120px
+  width: 120px;
 }
 
 #start {
@@ -373,12 +380,6 @@ button#save {
   border: 1px solid rgba(65, 223, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.3);
   margin: 2px;
-}
-
-.alert {
-  position: absolute;
-  z-index: 9;
-  bottom: 500px;
 }
 
 @media (min-width: 1300px) {
