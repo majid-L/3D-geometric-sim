@@ -1,12 +1,13 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Camera } from "three";
 import * as THREE from 'three'
-import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles } from "@react-three/drei";
+import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles, Stars } from "@react-three/drei";
 import PlayArea from "./PlayArea";
 import Table from "./Table";
 import { useControls } from 'leva'
-import { Suspense, useState } from "react";
+import { useEffect, useState } from "react";
 import GameControls from './GameControls';
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 
 function Zoom() {
     const { zoom } = useControls({ zoom: { value: 0.5, min: 0.05, max: 1.6, step: 0.01 } })
@@ -17,26 +18,34 @@ function Zoom() {
   };
 
 function ThreeDimensionalGame() {
+  const [effect, setEffect] = useState('stars');
+  const [bloom, setBloom] = useState(false);
   //const [boardConfiguration, setBoardConfiguration] = useState('');
+ 
+  useEffect(() => {
+    setTimeout(() => setBloom(true), 3000);
+  }, []);
 
   return (
   <main id="three-d-main">
   <GameControls/>
   <section className="anim">
   <Canvas>
-    <PerspectiveCamera makeDefault fov={75} position={[25, 25, 15]}/>
+    <PerspectiveCamera makeDefault fov={75} position={[35, 30, 15]}/>
     <Zoom/>
-    <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>
+    {effect === "stars" && <Stars radius={80} depth={50} count={7000} factor={5} saturation={0} fade speed={1}/>}
+    {effect === "sky" && <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
     <Sparkles {...props}/>
     <pointLight position={[10, 0, 10]}/>
     <CameraControls/>
     <OrbitControls/>
-    <Suspense fallback={null}>
     <Center>
-      <PlayArea />
+      <EffectComposer enabled={bloom}>
+      <Bloom mipmapBlur luminanceThreshold={1} mipmapBlur />
+      <PlayArea setEffect={setEffect} setBloom={setBloom} bloom={bloom}/>
       <Table />
+      </EffectComposer>
     </Center>
-    </Suspense>
   </Canvas>
   </section>
   </main>)
