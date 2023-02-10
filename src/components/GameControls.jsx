@@ -22,7 +22,6 @@ const InteractTooltip = (
 
 
 const GameControls = () => {
-
 const [patternName, setPatternName] = useState('');
 const [show, setShow] = useState(false);
 const [showAlert, setShowAlert] = useState(false);
@@ -31,7 +30,7 @@ const [alertMsg, setAlertMsg] = useState('');
 const [showSuccess, setShowSuccess] = useState(false);
 const location = useLocation();
 
-const { controls, setControls, gameParameters: {isRunning, configuration, username} } = useContext(GameControlsContext);
+const { controls, setControls, gameParameters: {isRunning, configuration, username, physics} } = useContext(GameControlsContext);
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
@@ -79,8 +78,6 @@ const handleSubmit = e => {
   })
 }
 
-const condition = controls.button === "enablePhysics";
-
 return (<>
 <section className="game-alerts">
   {showAlert && <Alert className="alert" variant="danger" onClose={() => setShowAlert(false)} dismissible>
@@ -98,51 +95,46 @@ return (<>
           </Button>
       </Alert>
       </section>
-<section className="game-controls">
-      {location.pathname[1] === "3" && <Dropdown onClick={handleClick}>
-        <Dropdown.Toggle id="effects" variant="secondary">
-          Effects
-        </Dropdown.Toggle>
 
-        <Dropdown.Menu variant="dark">
-          <Dropdown.Item id="stars">Stars</Dropdown.Item>
-          <Dropdown.Item id="sky">Sky</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>}
+<section className={location.pathname[1] === "3" ? "three-d-controls" : "two-d-controls"}>
+<ButtonGroup id={location.pathname[1] === "3" ? "three-d-btn-group" : "two-d-btn-group"} onClick={handleClick} aria-label="Basic example">
+  <Button disabled={physics} id="start" variant="secondary">Start</Button>
+  <Button disabled={physics} id="stop" variant="secondary">Stop</Button>
+  <Button disabled={physics} id="reset" variant="secondary">Reset</Button>
+  <Button disabled={physics} id="randomise" variant="secondary">Randomise</Button>
+  <Button disabled={physics} id="clear" variant="secondary">Clear</Button>
+  <Button disabled={physics} id="faster" variant="secondary"><SpeedIcon/>Faster</Button>
+  <Button disabled={physics} id="slower" variant="secondary"><SpeedIcon/>Slower</Button>
 
-<ButtonGroup onClick={handleClick} aria-label="Basic example">
-  <Button disabled={condition} id="start" variant="secondary">Start</Button>
-  <Button disabled={condition} id="stop" variant="secondary">Stop</Button>
-  <Button disabled={condition} id="reset" variant="secondary">Reset</Button>
-  <Button disabled={condition} id="randomise" variant="secondary">Randomise</Button>
-  <Button disabled={condition} id="clear" variant="secondary">Clear</Button>
-  <Button disabled={condition} id="faster" variant="secondary"><SpeedIcon/>Faster</Button>
-  <Button disabled={condition} id="slower" variant="secondary"><SpeedIcon/>Slower</Button>
+  <Button disabled={physics || isRunning} id="larger" variant="secondary"><LargeIcon/>Larger</Button>
+  <Button disabled={physics || isRunning} id="smaller" variant="secondary"><SmallIcon/>Smaller</Button>
 
-  <Button disabled={condition || isRunning} id="larger" variant="secondary"><LargeIcon/>Larger</Button>
-  <Button disabled={condition || isRunning} id="smaller" variant="secondary"><SmallIcon/>Smaller</Button>
-
-  <DropdownButton disabled={condition} as={ButtonGroup} title="3D/2D" className="bg-nested-dropdown">
-   <Dropdown.Item id="threeD" eventKey="1">3D</Dropdown.Item>
-   <Dropdown.Item id="twoD" eventKey="2">2D</Dropdown.Item>
- </DropdownButton>
-  
-  <DropdownButton disabled={condition} as={ButtonGroup} title="Edge type" className="bg-nested-dropdown">
+  <DropdownButton disabled={physics} as={ButtonGroup} title="Edge type" className="bg-nested-dropdown">
    <Dropdown.Item id="edge" eventKey="1">Hard edge</Dropdown.Item>
    <Dropdown.Item id="wrap" eventKey="2">Wrap around</Dropdown.Item>
  </DropdownButton>
 
  <OverlayTrigger placement="top" overlay={InteractTooltip}>
- <DropdownButton disabled={condition} as={ButtonGroup} title="Interact" className="bg-nested-dropdown">
+ <DropdownButton disabled={physics} as={ButtonGroup} title="Interact" className="bg-nested-dropdown">
    <Dropdown.Item id="enableClick" eventKey="1">Enable</Dropdown.Item>
    <Dropdown.Item id="disableClick" eventKey="2">Disable</Dropdown.Item>
  </DropdownButton>
  </OverlayTrigger>
- 
+
+  {location.pathname[1] === "3" && <>
+   <DropdownButton disabled={physics} as={ButtonGroup} title="Effects" className="bg-nested-dropdown">
+   <Dropdown.Item id="stars" eventKey="1">Stars</Dropdown.Item>
+   <Dropdown.Item id="sky" eventKey="2">Sky</Dropdown.Item>
+   <Dropdown.Item id="bloom" eventKey="2">Bloom (toggle)</Dropdown.Item>
+   <Dropdown.Item id="toggleText" variant="secondary">3D text (toggle)</Dropdown.Item>
+   </DropdownButton>
+
  <DropdownButton as={ButtonGroup} id="physics" title="Physics" className="bg-nested-dropdown">
    <Dropdown.Item id="enablePhysics" eventKey="1">Enable</Dropdown.Item>
    <Dropdown.Item id="disablePhysics" eventKey="2">Disable</Dropdown.Item>
  </DropdownButton>
+  </>}
+ 
  <Button variant="primary" id="save" onClick={handleShow}>
         Save pattern
       </Button>
