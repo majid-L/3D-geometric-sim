@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
@@ -19,12 +19,12 @@ const [showAlert, setShowAlert] = useState(false);
 const [successMsg, setSuccessMsg] = useState(false);
 const [showSuccess, setShowSuccess] = useState(false);
 
-const { gameParameters, setGameParameters} = useContext(GameControlsContext);
+const { gameParameters : {username: loggedInUser}, setGameParameters} = useContext(GameControlsContext);
 
 const handleLogin = e => {
   e.preventDefault();
-  if (gameParameters.username) {
-    setAlertMsg(`You're already logged in, ${gameParameters.username}!`);
+  if (loggedInUser) {
+    setAlertMsg(`You're already logged in, ${loggedInUser}!`);
     setShowAlert(true);
   } else if (!username || !password) {
     setAlertMsg('Please complete all required fields.');
@@ -87,7 +87,15 @@ const handleSignup = e => {
         setShowAlert(true);
     })
   };
-}
+};
+
+useEffect(() => {
+  loggedInUser ? window.localStorage.setItem('MTYD_APP', loggedInUser) : null;
+}, [loggedInUser]);
+
+useEffect(() => {
+  setGameParameters(prev => ({...prev, username: window.localStorage.getItem('MTYD_APP')}));
+}, []);
 
   return (
     <main>
@@ -107,7 +115,7 @@ const handleSignup = e => {
 
     {showAlert && <Alert id="login_alert" variant="danger" onClose={() => setShowAlert(false)} dismissible>
         <Alert.Heading>Something went wrong.</Alert.Heading>
-        <p style={{margin: 0}}>{alertMsg}{gameParameters.username && <Smiley/>}</p>
+        <p style={{margin: 0}}>{alertMsg}{loggedInUser && <Smiley/>}</p>
       </Alert>}
 
     <Form onSubmit={formType === "login" ? handleLogin : handleSignup} id="login_form">
