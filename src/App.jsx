@@ -8,6 +8,7 @@ import Tutorial from "./components/Tutorial";
 import Patterns from "./components/Patterns";
 import { Users } from "./components/Users";
 import { Login } from "./components/Login";
+import UserPatterns from "./components/UserPatterns";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/patterns" element={<Patterns />} />
         <Route path="/users" element={<Users />} />
         <Route path="/login" element={<Login/>}/>
+        <Route path="/patterns/:user" element={<UserPatterns />}/>
       </Routes>
     </div>
   );
