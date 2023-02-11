@@ -19,11 +19,11 @@ return (<Card className="user_card">
             <Nav.Link onClick={() => {
               navigate(`/patterns/${username}`);
               window.scrollTo(0, 0);
-            }}>{username}'s patterns</Nav.Link>
+            }}>View user's patterns</Nav.Link>
           </Nav.Item>
         </Nav>
       </Card.Header>
-    {/* <Card.Img variant="top" src={avatar} /> */}
+    <Card.Img variant="top" src={avatar} />
     <Card.Body>
       <Card.Title>{username}</Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{accountOwner}</Card.Subtitle>
