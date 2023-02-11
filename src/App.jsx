@@ -7,6 +7,7 @@ import PlayArea from "./components/PlayArea";
 import Tutorial from "./components/Tutorial";
 import Patterns from "./components/Patterns";
 import { Users } from "./components/Users";
+import { Login } from "./components/Login";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/patterns" element={<Patterns />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </div>
   );
