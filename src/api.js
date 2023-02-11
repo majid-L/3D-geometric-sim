@@ -8,6 +8,18 @@ export const getUsers = () => {
   return axios.get("https://automatrixapi.pythonanywhere.com/api/users");
 };
 
+export const getComments = () => {
+  return axios.get("https://automatrixapi.pythonanywhere.com/api/comments");
+};
+
+export const postComment = request => {
+  return axios.post("https://automatrixapi.pythonanywhere.com/api/comments", request);
+};
+
+export const deleteComment = id => {
+  return axios.delete(`https://automatrixapi.pythonanywhere.com/api/comments/${id}`);
+};
+
 export const getUserById = id => {
   return axios.get(`https://automatrixapi.pythonanywhere.com/api/users/${id}`);
 }
