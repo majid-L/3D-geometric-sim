@@ -40,7 +40,7 @@ return (
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <NavDropdown title="Custom patterns" id="collasible-nav-dropdown">
+          {false && <NavDropdown title="Custom patterns" id="collasible-nav-dropdown">
             {patterns.length && patterns.map((pattern, i, arr) => {
               if (i < 20) {
                  return <NavDropdown.Item key={pattern._id} onClick={handleClick(pattern.pattern_body)}>"{pattern.pattern_name}"</NavDropdown.Item>
@@ -50,7 +50,7 @@ return (
             <NavDropdown.Item onClick={() => navigate("patterns")}>
               All patterns
             </NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown>}
           <NavDropdown title="Featured patterns" id="collasible-nav-dropdown">
             {patterns.length && patterns.map(pattern => {
               if (featuredPatterns.includes(pattern.pattern_name)) {
@@ -62,16 +62,20 @@ return (
               All patterns
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link onClick={() => navigate("tutorial")}>How to play</Nav.Link>
-          <Nav.Link onClick={() => navigate("3dgame")}>3D game</Nav.Link>
-          <Nav.Link onClick={() => navigate("2dgame")}>2D game</Nav.Link>
+          <Nav.Link onClick={() => navigate("tutorial")}>Tutorial</Nav.Link>
+          <Nav.Link onClick={() => setShowSidebar(true)}>Tips</Nav.Link>
+          <Nav.Link style={{color: 'yellow', fontWeight: 'bold'}} onClick={() => navigate("3dgame")}>3D</Nav.Link>
+          <Nav.Link style={{color: 'yellow', fontWeight: 'bold'}} onClick={() => navigate("2dgame")}>2D</Nav.Link>
           <Nav.Link onClick={() => navigate("patterns")}>All patterns</Nav.Link>
           <Nav.Link onClick={() => navigate("user")}>My patterns</Nav.Link>
         </Nav>
         <Nav>
           <Nav.Link onClick={() => navigate("users")}>Users</Nav.Link>
-          <Nav.Link onClick={() => setShowSidebar(true)}>Game tips</Nav.Link>
-          <Nav.Link onClick={() => navigate("login")}>Hi, {username}!</Nav.Link>
+          <Nav.Link onClick={() => navigate("login")}>{username ? `Hi, ${username}!` : 'Login'}</Nav.Link>
+          {username && <Nav.Link onClick={() => {
+            setGameParameters(prev => ({...prev, username: ''}));
+            navigate("3dgame");
+          }}>Logout</Nav.Link>}
         </Nav>
       </Navbar.Collapse>
     </Container>
