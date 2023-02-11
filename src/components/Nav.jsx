@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import HiddenSidebar from './HiddenSidebar';
 import { getPatterns } from "../api";
 import { GameControlsContext } from "../contexts/GameControlsContext";
+import { ThreeD } from "./Icons";
 
 function Navigation() {
 const [showSidebar, setShowSidebar] = useState(false);
@@ -51,6 +52,8 @@ return (
               All patterns
             </NavDropdown.Item>
           </NavDropdown>}
+          <Nav.Link style={{color: 'rgb(255, 165, 0)', fontWeight: 'bold'}} onClick={() => navigate("3dgame")}><ThreeD /></Nav.Link>
+          <Nav.Link id="two-d-nav" onClick={() => navigate("2dgame")}>2D</Nav.Link>
           <NavDropdown title="Featured patterns" id="collasible-nav-dropdown">
             {patterns.length && patterns.map(pattern => {
               if (featuredPatterns.includes(pattern.pattern_name)) {
@@ -64,16 +67,18 @@ return (
           </NavDropdown>
           <Nav.Link onClick={() => navigate("tutorial")}>Tutorial</Nav.Link>
           <Nav.Link onClick={() => setShowSidebar(true)}>Tips</Nav.Link>
-          <Nav.Link style={{color: 'yellow', fontWeight: 'bold'}} onClick={() => navigate("3dgame")}>3D</Nav.Link>
-          <Nav.Link style={{color: 'yellow', fontWeight: 'bold'}} onClick={() => navigate("2dgame")}>2D</Nav.Link>
           <Nav.Link onClick={() => navigate("patterns")}>All patterns</Nav.Link>
           {username && <Nav.Link onClick={() => navigate(`/patterns/${username}`)}>My patterns</Nav.Link>}
         </Nav>
         <Nav>
           <Nav.Link onClick={() => navigate("users")}>Users</Nav.Link>
-          <Nav.Link onClick={() => navigate("login")}>{username ? `Hi, ${username}!` : 'Login'}</Nav.Link>
+          <Nav.Link onClick={() => navigate("users")}>Social</Nav.Link>
+          <Nav.Link onClick={() => {
+            navigate(username ? "profile" : "login")
+          }}>{username ? `Hi, ${username}!` : 'Login'}</Nav.Link>
           {username && <Nav.Link onClick={() => {
             setGameParameters(prev => ({...prev, username: ''}));
+            window.localStorage.setItem('MTYD_APP', '');
             navigate("3dgame");
           }}>Logout</Nav.Link>}
         </Nav>
