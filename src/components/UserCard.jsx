@@ -1,20 +1,25 @@
 import { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import { useNavigate } from 'react-router-dom';
 import { GameControlsContext } from '../contexts/GameControlsContext';
 
 export const UserCard = ({id, username, accountOwner, email, avatar}) => {
-const {setGameParameters} = useContext(GameControlsContext);
+  const navigate = useNavigate();
+// const {setGameParameters} = useContext(GameControlsContext);
 
-const handleClick = () => {
-  setGameParameters(prev => ({...prev, username}));
-};
+// const handleClick = () => {
+//   setGameParameters(prev => ({...prev, username}));
+// };
 
 return (<Card className="user_card">
     <Card.Header>
         <Nav variant="pills" defaultActiveKey="#first">
           <Nav.Item>
-            <Nav.Link>{username}'s patterns</Nav.Link>
+            <Nav.Link onClick={() => {
+              navigate(`/patterns/${username}`);
+              window.scrollTo(0, 0);
+            }}>{username}'s patterns</Nav.Link>
           </Nav.Item>
         </Nav>
       </Card.Header>
