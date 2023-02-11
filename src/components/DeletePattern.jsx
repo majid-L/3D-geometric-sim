@@ -7,21 +7,25 @@ import { useNavigate } from 'react-router-dom';
 
 function DeletePattern(props) {
 const [showAlert, setShowAlert] = useState(false);
+const [alertMsg, setAlertMsg] = useState('');
 const [showSuccess, setShowSuccess] = useState(false);
 const navigate = useNavigate();
+
+const {setPatternsData} = props;
 
 const handleClick = () => {
   deletePattern(props.id).then(() => {
     setShowSuccess(true);
   }).catch(err => {
     setAlertMsg(err.response.data.msg);
+    props.onHide();
     setShowAlert(true);
   });
 };
 
   return (
     <>
-    {showAlert && <Alert className="alert" variant="danger" onClose={() => setShowAlert(false)} dismissible>
+    {showAlert && <Alert style={{height: 'fit-content', marginTop: '20px'}} className="alert" variant="danger" onClose={() => setShowAlert(false)} dismissible>
       <Alert.Heading>Something went wrong...</Alert.Heading>
       <p>{alertMsg}</p>
     </Alert>}
@@ -50,8 +54,8 @@ const handleClick = () => {
         <Button onClick={() => {
             if (showSuccess) {
                //navigate('/3dgame');
-               props.setPatternsData(prev => prev.filter(pattern => pattern._id !== props.id));
-             }
+               setPatternsData(prev => prev.filter(pattern => pattern._id !== props.id));
+             };
             props.onHide();
         }}>Close</Button>
         {!showSuccess && <Button style={{"backgroundColor": "rgb(250, 100, 200"}} onClick={handleClick}>Confirm</Button>}
