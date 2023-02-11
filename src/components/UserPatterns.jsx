@@ -5,16 +5,18 @@ import { getPatternsByUser, getUsers } from "../api";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 import PatternCard from './PatternCard';
 import Button from 'react-bootstrap/Button';
+import { Loading } from "./Loading";
 
 function UserPatterns () {
 const [userPatterns, setUserPatterns] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
+const [isLoading, setIsLoading] = useState(false);
 const {gameParameters: {username: loggedInUser}} = useContext(GameControlsContext);
 const {username} = useParams();
 
 const navigate = useNavigate();
 
 useEffect(() => {
+  setIsLoading(true);
   getPatternsByUser(username)
   .then(({data: {patterns}}) => {
     setUserPatterns(patterns);
@@ -29,6 +31,8 @@ useEffect(() => {
 if (userPatterns) {
   return (<main>
     <h1 className="user_h1">{loggedInUser === username ? `Welcome back, ${username}.` : `${username}'s patterns`}</h1>
+
+    {isLoading && <Loading/>}
 
     <Button style={{display: 'block', margin: '60px auto 40px'}} onClick={() => navigate(-1)}>Go back</Button>
 
