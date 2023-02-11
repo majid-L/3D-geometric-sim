@@ -77,7 +77,7 @@ const handleSubmit = e => {
     setAlertMsg(err.response.data.msg);
     setShowAlert(true);
   })
-}
+};
 
 return (<>
 <section className="game-alerts">
@@ -136,7 +136,7 @@ return (<>
  </DropdownButton>
   </>}
  
- <Button variant="primary" id="save" onClick={handleShow}>
+ <Button disabled={physics} variant="primary" id="save" onClick={handleShow}>
         Save pattern
       </Button>
 </ButtonGroup>
