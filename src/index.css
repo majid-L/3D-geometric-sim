@@ -68,12 +68,12 @@ img.user_img {
   border-radius: 50%;
 }
 
-.user_title {
+/* .user_title {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding: 30px;
-}
+} */
 
 .tutorial_intro {
   color: rgb(235, 216, 255);
@@ -90,6 +90,17 @@ img.user_img {
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
   border: 1px solid rgba(231, 46, 123, 0.55);
+}
+
+.user_intro {
+  color: whitesmoke;
+  margin: 50px auto 30px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.user_h1 {
+  margin: 120px auto 0
 }
 
 .App {
@@ -138,7 +149,7 @@ body,
   position: absolute;
   bottom: 50vh;
   width: 100%;
-  z-index: 100;
+  z-index: 900;
 }
 
 a {
@@ -189,10 +200,6 @@ h1 {
 #login_alert, #login_success {
   width: 80%;
   margin: 50px auto
-}
-
-.user_h1 {
-  margin: 70px 2px 30px;
 }
 
 .gametipsImg {
