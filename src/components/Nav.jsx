@@ -72,7 +72,7 @@ return (
         </Nav>
         <Nav>
           <Nav.Link onClick={() => navigate("users")}>Users</Nav.Link>
-          <Nav.Link onClick={() => navigate("users")}>Social</Nav.Link>
+          <Nav.Link onClick={() => navigate("comments")}>Social</Nav.Link>
           <Nav.Link onClick={() => {
             navigate(username ? "profile" : "login")
           }}>{username ? `Hi, ${username}!` : 'Login'}</Nav.Link>
