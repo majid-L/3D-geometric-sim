@@ -1,7 +1,10 @@
 import { Edges } from "@react-three/drei"
+import { useContext, useEffect, useState } from "react";
+import { GameControlsContext } from "../contexts/GameControlsContext";
 
 function Cell({ position, living, interact, setGameParameters, isRunning, bloom }) {
-
+  const {gameParameters : {emissive}} = useContext(GameControlsContext);
+  
     return (
         <mesh onClick={() => {
             if (interact === true && !isRunning) {
@@ -13,7 +16,7 @@ function Cell({ position, living, interact, setGameParameters, isRunning, bloom 
             };
         } } position={position}>
             {living ? <>
-            <meshStandardMaterial emissive="hotpink" emissiveIntensity={!bloom ? 2 : 2.6} transparent={!bloom} toneMapped={false} opacity={0.9} />
+            <meshStandardMaterial emissive={emissive} emissiveIntensity={!bloom ? 2 : 2.6} transparent={!bloom} toneMapped={false} opacity={0.9} />
             <Edges color="rgb(200, 60, 200)"/>
             <boxGeometry/></> :
             <><mesh position={[0, -0.5, 0]}>
