@@ -171,6 +171,26 @@ h1 {
   padding: 30px;
 }
 
+.login_h1  {
+  margin: 120px auto 40px;
+  padding: 30px
+}
+
+.login_text {
+  color: whitesmoke;
+  text-align: center;
+}
+
+.signup {
+  width: 80%;
+  margin: 50px auto
+}
+
+#login_alert, #login_success {
+  width: 80%;
+  margin: 50px auto
+}
+
 .user_h1 {
   margin: 70px 2px 30px;
 }
@@ -214,7 +234,7 @@ div.card {
 }
 
 .user_card {
-  height: 200px !important;
+  height: 150px !important;
   margin: 0 !important
 }
 
@@ -242,24 +262,24 @@ div.card {
 
 #nav {
   width: 100vw;
-  height: 60px;
+  /* height: 60px; */
   position: absolute;
   top: 0;
   z-index: 999;
+  justify-content: center;
 }
 
 div.container {
-  margin: 0;
-  width: 100%;
+  margin: 0 !important
 }
 
 /* div.container > * {
   width: 200px
 } */
 
-/* a.nav-link {
-  width: 100px
-} */
+a.nav-link {
+  width: auto
+}
 
 div.modal {
   margin-top: 500px;
@@ -413,6 +433,14 @@ button#save {
   border: 1px solid rgba(65, 223, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.3);
   margin: 2px;
+}
+
+#login_form {
+  width: 80%;
+  margin: 20px auto 0;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 7px;
 }
 
 @media (min-width: 1300px) {
