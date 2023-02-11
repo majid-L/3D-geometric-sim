@@ -86,7 +86,7 @@ return (<>
       <p>{alertMsg}</p>
     </Alert>}
 
-    <Alert show={showSuccess} variant="success">
+    <Alert style={{textAlign: 'center'}} show={showSuccess} variant="success">
         <Alert.Heading>You pattern has been added to your collection.</Alert.Heading>
         <p>
           Job done. Now let's get back to the game.
@@ -97,7 +97,7 @@ return (<>
       </Alert>
       </section>
 
-<section className={location.pathname[1] === "3" ? "three-d-controls" : "two-d-controls"}>
+{!showSuccess && <section className={location.pathname[1] === "3" ? "three-d-controls" : "two-d-controls"}>
 <ButtonGroup id={location.pathname[1] === "3" ? "three-d-btn-group" : "two-d-btn-group"} onClick={handleClick} aria-label="Basic example">
   <Button disabled={physics} id="start" variant="secondary">Start</Button>
   <Button disabled={physics} id="stop" variant="secondary">Stop</Button>
@@ -172,7 +172,7 @@ return (<>
           : <Button variant="primary" onClick={() => navigate('/login')}>Log in</Button>}
         </Modal.Footer>
       </Modal>
-</section></>)
+</section>}</>)
 };
 
 export default GameControls;
