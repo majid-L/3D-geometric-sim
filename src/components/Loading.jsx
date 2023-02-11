@@ -5,7 +5,7 @@ export const Loading = () => {
     display: 'block',
     height: '100px',
     width: '100px',
-    margin: '30px auto',
+    margin: '70px auto 20px',
     fontSize: '30px'
   }} animation="border" variant="warning"/>
   <p style={{
