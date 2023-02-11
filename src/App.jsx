@@ -10,6 +10,7 @@ import { Users } from "./components/Users";
 import { Login } from "./components/Login";
 import UserPatterns from "./components/UserPatterns";
 import { Profile } from "./components/Profile";
+import { Comments } from "./components/Comments";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path='/profile' element={<Profile/>} />
         <Route path="/patterns/:username" element={<UserPatterns />}/>
+        <Route path="/comments" element={<Comments />}/>
       </Routes>
     </div>
   );
