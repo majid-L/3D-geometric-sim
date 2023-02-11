@@ -68,14 +68,14 @@ const handleSubmit = e => {
 return (<main>
     <h1 className="profile_h1">Profile</h1>
 
-    <div className="profile_card">
+    {userDetails && <div className="profile_card">
     <img className="profile_img" src={userDetails.avatar_url}/>
     <div>
     <p style={{fontWeight: 'bold'}}>{userDetails.account_owner}</p>
     <p>{userDetails.username}</p>
     <p>{userDetails.email}</p>
     </div>
-    </div>
+    </div>}
 
 <h2 className="profile_h2">Update profile information</h2>
 
