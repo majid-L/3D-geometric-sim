@@ -43,7 +43,7 @@ export const GameControlsProvider = ({children}) => {
         interact: true,
         interval: 500,
         title: true,
-        username: '',
+        username: window.localStorage.getItem('MTYD_APP'),
         physics: false,
         boardStyle: 'threeDimensional',
         floating3DText: true,
