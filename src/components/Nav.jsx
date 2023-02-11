@@ -67,7 +67,7 @@ return (
           <Nav.Link style={{color: 'yellow', fontWeight: 'bold'}} onClick={() => navigate("3dgame")}>3D</Nav.Link>
           <Nav.Link style={{color: 'yellow', fontWeight: 'bold'}} onClick={() => navigate("2dgame")}>2D</Nav.Link>
           <Nav.Link onClick={() => navigate("patterns")}>All patterns</Nav.Link>
-          <Nav.Link onClick={() => navigate("user")}>My patterns</Nav.Link>
+          {username && <Nav.Link onClick={() => navigate(`/patterns/${username}`)}>My patterns</Nav.Link>}
         </Nav>
         <Nav>
           <Nav.Link onClick={() => navigate("users")}>Users</Nav.Link>
