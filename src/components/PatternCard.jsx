@@ -1,26 +1,39 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import { useNavigate } from 'react-router-dom';
+import { GameControlsContext } from '../contexts/GameControlsContext';
 import DeletePattern from './DeletePattern';
 
 const stringToArray = str => str.split(" ").map(m => m.split("").map(m => +m));
 
 function PatternCard ({id, username, pattern_name, avatar_url, created_at, pattern_body, setPatternsData}) {
   const [deleteMsg, setDeleteMsg] = useState(false);
-  const gridcolumns = "1fr ".repeat(pattern_body.split(" ")[0].length);
+  const {gameParameters: {username : loggedInUser}, setGameParameters } = useContext(GameControlsContext);
+  const navigate = useNavigate();
 
+  const handleClick = e => {
+    setGameParameters(prev => ({...prev, isRunning: false, configuration: stringToArray(pattern_body)}));
+    navigate(e.target.id === 'set-3d' ? '/3dgame' : '/2dgame');
+  }
+
+  const gridcolumns = "1fr ".repeat(pattern_body.split(" ")[0].length);
+  
     return <><Card>
     <Card.Header>
         <Nav variant="pills" defaultActiveKey="#first">
           <Nav.Item>
-            <Nav.Link href="#first">Go 3D</Nav.Link>
+            <Nav.Link href="#first" id='set-3d' onClick={handleClick}>Go 3D</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="#link">Go 2D</Nav.Link>
+            <Nav.Link href="#link" id='set-2d' onClick={handleClick}>Go 2D</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="#">
+            <Nav.Link onClick={() => {
+              navigate(`/patterns/${username}`);
+              window.scrollTo(0, 0);
+            }}>
               More patterns
             </Nav.Link>
           </Nav.Item>
@@ -55,7 +68,7 @@ function PatternCard ({id, username, pattern_name, avatar_url, created_at, patte
         }
         )}
         </div>
-        <Button onClick={() => setDeleteMsg(true)} className="pattern_delete" variant="primary">Delete</Button>
+        {loggedInUser === username && <Button onClick={() => setDeleteMsg(true)} className="pattern_delete" variant="primary">Delete</Button>}
       </Card.Body>
     </Card>
     
