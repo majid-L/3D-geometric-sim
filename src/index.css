@@ -30,7 +30,8 @@ body,
 main,
 .App {
   background-color: #242424 !important;
-  width: 100vw;
+  overflow-x: hidden;
+  /* width: 100%; */
 }
 
 h2 {
@@ -46,7 +47,7 @@ h2 {
 main.tutorial {
   width: 100vw;
   margin: auto;
-  padding-bottom: 60px;
+  padding-bottom: 100px;
   height: 100%;
   /* width: fit-content;
   margin: 10px auto;
@@ -121,7 +122,7 @@ img.user_img {
 
 html,
 body,
-#root,
+/* #root, */
 .anim {
   /*width: 100%;*/
   height: 100%;
@@ -177,8 +178,9 @@ h1 {
 
 .patterns_h1,
 .tutorial_h1,
-.users_h1 {
-  margin-top: 70px;
+.users_h1,
+.profile_h1 {
+  margin-top: 100px;
   padding: 30px;
 }
 
@@ -197,7 +199,7 @@ h1 {
   margin: 50px auto
 }
 
-#login_alert, #login_success {
+#login_alert, #login_success, #profile_alert, #profile_success {
   width: 80%;
   margin: 50px auto
 }
@@ -285,7 +287,14 @@ div.container {
 } */
 
 a.nav-link {
-  width: auto
+  padding: 6px 7px 2px !important
+}
+
+#two-d-nav {
+  color: rgb(255, 165, 0);
+  font-weight: bold;
+  font-size: 20px;
+  margin: -3px;
 }
 
 div.modal {
@@ -338,6 +347,8 @@ div.user_title {
 .two-d-controls {
   display: flex;
   justify-content: center;
+  width: 90%;
+  margin: 0 auto 
 }
 
 
@@ -403,15 +414,16 @@ button#save {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  margin: 2px;
+  margin: 1px;
 }
+
 .cellboard {
   margin: auto;
   display: grid;
-  width: 90vw;
-  max-width: 1100px;
-  height: 90vw;
-  max-height: 1100px;
+  width: 80%;
+  aspect-ratio: 1;
+  max-width: 1050px;
+  max-height: 1050px;
   border: 1px white solid;
   background-color: #696969;
   background: rgba(15, 21, 22, 0.89);
@@ -432,23 +444,64 @@ button#save {
   /* From https://css.glass */
   background: rgb(250, 162, 55);
   border-radius: 3px;
-  box-shadow: 0 0 4px 2px rgba(189, 102, 1, 0.959);
+  box-shadow: 0 0 6px 6px inset rgba(187, 100, 1, 0.959);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(37, 146, 0, 0.99);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(65, 223, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  margin: 2px;
+  margin: 1px;
 }
 
-#login_form {
+#login_form, #profile_form {
   width: 80%;
   margin: 20px auto 0;
   background-color: whitesmoke;
   padding: 10px;
   border-radius: 7px;
 }
+
+#profile_form {
+  max-width: 820px;
+}
+
+.profile_img {
+  display: block;
+  height: 250px;
+  width: 250px;
+  border-radius: 10px;
+  margin: 8px;
+  border: 1px solid grey;
+  box-shadow: 0 0 8px 4px grey;
+}
+
+.profile_card {
+  display: flex;
+  background-color: whitesmoke;
+  width: fit-content;
+  max-width: 700px;
+  margin: 40px auto 100px;
+  border-radius: 10px;
+}
+
+.profile_card > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 20px
+}
+
+.profile_card > div > p {
+  border-bottom: 1px solid rgba(124, 124, 124, 0.3)
+}
+
+.profile_h2 {
+  margin: 30px auto;
+  font-family: "Press Start 2P", cursive;
+  text-shadow: 2px 2px 20px rgb(207, 137, 7);
+}
+
 
 @media (min-width: 1300px) {
   button.btn-secondary,
@@ -481,5 +534,11 @@ button#save {
 
   #effects {
     margin: -60px 0 0 2vw;
+  }
+}
+
+@media (min-width: 1290px) {
+  a.nav-link {
+    padding: 5px 12px 2px !important
   }
 }
