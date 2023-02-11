@@ -17,7 +17,7 @@ import {
     function MatCap({ texture }) {
       const [matcap] = useMatcapTexture(texture, 256);
       return <meshMatcapMaterial matcap={matcap} />;
-    }
+    };
   
     return (
       <section className="anim">
