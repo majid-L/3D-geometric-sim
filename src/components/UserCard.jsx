@@ -14,10 +14,7 @@ return (<Card className="user_card">
     <Card.Header>
         <Nav variant="pills" defaultActiveKey="#first">
           <Nav.Item>
-            <Nav.Link onClick={handleClick}>Sign in</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>Patterns</Nav.Link>
+            <Nav.Link>{username}'s patterns</Nav.Link>
           </Nav.Item>
         </Nav>
       </Card.Header>
@@ -26,8 +23,5 @@ return (<Card className="user_card">
       <Card.Title>{username}</Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{accountOwner}</Card.Subtitle>
     </Card.Body>
-    <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
-    </Card.Footer>
   </Card>)
 };
