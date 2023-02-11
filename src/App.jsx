@@ -22,7 +22,7 @@ function App() {
         <Route path="/patterns" element={<Patterns />} />
         <Route path="/users" element={<Users />} />
         <Route path="/login" element={<Login/>}/>
-        <Route path="/patterns/:user" element={<UserPatterns />}/>
+        <Route path="/patterns/:username" element={<UserPatterns />}/>
       </Routes>
     </div>
   );
