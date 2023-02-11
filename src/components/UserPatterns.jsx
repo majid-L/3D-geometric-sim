@@ -1,15 +1,18 @@
 import { useContext, useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getPatternsByUser, getUsers } from "../api";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 import PatternCard from './PatternCard';
+import Button from 'react-bootstrap/Button';
 
 function UserPatterns () {
 const [userPatterns, setUserPatterns] = useState([]);
 const [isLoading, setIsLoading] = useState(true);
 const {gameParameters: {username: loggedInUser}} = useContext(GameControlsContext);
 const {username} = useParams();
+
+const navigate = useNavigate();
 
 useEffect(() => {
   getPatternsByUser(username)
@@ -26,6 +29,9 @@ useEffect(() => {
 if (userPatterns) {
   return (<main>
     <h1 className="user_h1">{loggedInUser === username ? `Welcome back, ${username}.` : `${username}'s patterns`}</h1>
+
+    <Button style={{display: 'block', margin: '60px auto 40px'}} onClick={() => navigate(-1)}>Go back</Button>
+
     {!isLoading && userPatterns.length ? <p className="user_intro">{loggedInUser === username ? 'Here are your saved patterns.' : `You are currently viewing all patterns submitted by ${username}.`}</p> : !isLoading && !userPatterns.length ? <p className="user_intro">{loggedInUser === username ? 'You haven\'t created any patterns yet.' : `${username} hasn\'t posted any patterns yet.`}</p> : null}
     <article className="patterns_list">
         {userPatterns.map(pattern => {
