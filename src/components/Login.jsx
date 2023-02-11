@@ -31,15 +31,21 @@ const handleLogin = e => {
     setShowAlert(true);
   } else {
     setShowAlert(false);
-    setUsername('');
-    setPassword('');
     login(username, password).then(() => {
+      setUsername('');
+      setPassword('');
       setGameParameters(prev => ({...prev, username}));
       setSuccessMsg(`Welcome back, ${username}!`);
       setShowSuccess(true);
-    }).catch(err => {
-        setAlertMsg("Login failed. Please ensure you are using the correct details and try again.");
+    }).catch(({response: {data}}) => {
         setShowAlert(true);
+        if (data.error_msg) {
+          setAlertMsg(data.error_msg);
+        } else if (data.data.error_msg) {
+          setAlertMsg(data.data.error_msg);
+        } else {
+          setAlertMsg("Login failed. Please ensure you are using the correct details and try again.");
+        }
     })
   }
 };
