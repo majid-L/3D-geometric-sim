@@ -130,6 +130,15 @@ return (<>
    <Dropdown.Item id="toggleText" variant="secondary">3D text (toggle)</Dropdown.Item>
    </DropdownButton>
 
+   <DropdownButton disabled={physics} as={ButtonGroup} title="Bloom color" className="bg-nested-dropdown">
+   <Dropdown.Item id="red" eventKey="1">Red</Dropdown.Item>
+   <Dropdown.Item id="hotpink" eventKey="2">Pink</Dropdown.Item>
+   <Dropdown.Item id="green" eventKey="2">Green</Dropdown.Item>
+   <Dropdown.Item id="blue" variant="secondary">Blue</Dropdown.Item>
+   <Dropdown.Item id="orange" variant="secondary">Orange</Dropdown.Item>
+   <Dropdown.Item id="purple" variant="secondary">Purple</Dropdown.Item>
+   </DropdownButton>
+
  <DropdownButton as={ButtonGroup} id="physics" title="Physics" className="bg-nested-dropdown">
    <Dropdown.Item id="enablePhysics" eventKey="1">Enable</Dropdown.Item>
    <Dropdown.Item id="disablePhysics" eventKey="2">Disable</Dropdown.Item>
