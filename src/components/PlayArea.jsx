@@ -89,6 +89,8 @@ function PlayArea({setEffect, setBloom, bloom}) {
       setBloom(!bloom);
     } else if (button === "toggleText") {
       setGameParameters(prev => ({...prev, floating3DText: !prev.floating3DText}));
+    } else if (['red', 'hotpink', 'blue', 'green', 'orange', 'purple'].includes(button)) {
+      setGameParameters(prev => ({...prev, emissive: button}));
     }
   }, [controls]);
   
