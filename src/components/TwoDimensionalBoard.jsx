@@ -9,7 +9,7 @@ const { gameParameters: {isRunning, configuration, interact}, setGameParameters 
 const gridcolumns = "1fr ".repeat(configuration.length);
 
 return (<>
-<h1 className="tutorial_h1">Game Of Life in 2D</h1>
+<h1 style={{marginTop: '70px'}} className="tutorial_h1">Game Of Life in 2D</h1>
     <div className="cellboard" style={{ gridTemplateColumns: gridcolumns }}>
       {configuration.map((row, i) => {
         return row.map((cell, k) => {
