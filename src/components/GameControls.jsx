@@ -6,7 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { GameControlsContext } from '../contexts/GameControlsContext';
 import {SmallIcon, LargeIcon, SpeedIcon} from './Icons';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import React from 'react';
 import Form from 'react-bootstrap/Form';
@@ -29,8 +29,9 @@ const [alertMsg, setAlertMsg] = useState('');
 
 const [showSuccess, setShowSuccess] = useState(false);
 const location = useLocation();
+const navigate = useNavigate();
 
-const { controls, setControls, gameParameters: {isRunning, configuration, username, physics} } = useContext(GameControlsContext);
+const { controls, setControls, gameParameters: {isRunning, configuration, physics, username}} = useContext(GameControlsContext);
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
@@ -142,10 +143,11 @@ return (<>
 
 <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Save pattern</Modal.Title>
+          <Modal.Title>{username ? 'Save pattern' : 'Sign-in required.'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          {!username && <p style={{margin: 0}}>Sign in to save any patterns you've created.</p>}
+          {username && <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>What would you like to name this pattern?</Form.Label>
               <Form.Control
@@ -160,15 +162,14 @@ return (<>
               controlId="exampleForm.ControlTextarea1"
             >
             </Form.Group>
-          </Form>
+          </Form>}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Save pattern
-          </Button>
+          {username ? <Button variant="primary" onClick={handleSubmit}>Save pattern</Button>
+          : <Button variant="primary" onClick={() => navigate('/login')}>Log in</Button>}
         </Modal.Footer>
       </Modal>
 </section></>)
