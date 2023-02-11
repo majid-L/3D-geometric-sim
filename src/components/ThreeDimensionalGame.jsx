@@ -35,7 +35,7 @@ function ThreeDimensionalGame() {
     <Zoom/>
     {effect === "stars" && <Stars radius={80} depth={50} count={7000} factor={5} saturation={0} fade speed={1}/>}
     {effect === "sky" && <Sky sunPosition={[0, 1, 3]} exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
-    <Sparkles {...props}/>
+    {!bloom && <Sparkles {...props}/>}
     <pointLight position={[10, 0, 10]}/>
     <CameraControls/>
     <OrbitControls/>
