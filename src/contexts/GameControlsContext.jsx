@@ -47,7 +47,8 @@ export const GameControlsProvider = ({children}) => {
         physics: false,
         boardStyle: 'threeDimensional',
         floating3DText: true,
-        sizeModifier: 0
+        sizeModifier: 0,
+        emissive: 'hotpink'
     });
 
     return <GameControlsContext.Provider value={{controls, setControls, texture, gameParameters, setGameParameters}}>
