@@ -43,7 +43,7 @@ export const GameControlsProvider = ({children}) => {
         interact: true,
         interval: 500,
         title: true,
-        username: 'vp-mkVII',
+        username: '',
         physics: false,
         boardStyle: 'threeDimensional',
         floating3DText: true,
