@@ -11,6 +11,7 @@ import { Login } from "./components/Login";
 import UserPatterns from "./components/UserPatterns";
 import { Profile } from "./components/Profile";
 import { Comments } from "./components/Comments";
+import { NotFound } from "./components/NotFound";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path="/patterns/:username" element={<UserPatterns />}/>
         <Route path="/comments" element={<Comments />}/>
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </div>
   );
