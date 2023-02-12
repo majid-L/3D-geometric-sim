@@ -7,10 +7,13 @@ function HiddenSidebar({showSidebar, setShowSidebar}) {
   return (
     <> <Offcanvas show={showSidebar} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title style={{fontSize: '22px'}}>Tips and tricks</Offcanvas.Title>
+          <Offcanvas.Title style={{fontSize: '22px'}}>Useful information</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <p>Multiply...or die. Is it a game or is it reality? Are you an automaton or the game master?</p>
+          <p style={{fontStyle: 'italic'}}>"Is it a game or is it reality? Am I an automaton or am I in control? Will I multiply, or die?"</p>
+
+          <p className="tips_title">Switching between 3D and 2D views</p>
+          <p>The game keeps constant track of your board configuration such that you're able to freely switch between the 3D and 2D boards while the game continues to run and your pattern continues to evolve.</p>
 
           <p className="tips_title">Camera controls</p>
           <ul><li>To zoom in and out, use the provided slider rather than your mouse scroll wheel.</li>
