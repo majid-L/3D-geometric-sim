@@ -7,7 +7,7 @@ const navigate = useNavigate();
 
 const handleError = ({ currentTarget }) => {
   currentTarget.onerror = null; // prevents looping
-  currentTarget.src=`../../public/avatar${[0, 1, 2, 3, 4, 5, 6][Math.floor(Math.random() * 7)]}.png`;
+  currentTarget.src=`avatar${[0, 1, 2, 3, 4, 5, 6][Math.floor(Math.random() * 7)]}.png`;
 };
 
 return (<Card className="user_card">
