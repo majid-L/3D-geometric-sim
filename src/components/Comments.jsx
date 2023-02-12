@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { GameControlsContext } from "../contexts/GameControlsContext";
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
+import { Chat } from "./Icons";
 
 export const Comments = () => {
 const [comments, setComments] = useState([]);
@@ -97,7 +98,8 @@ const handleError = ({ currentTarget }) => {
 
 return(<main>
 <h1 className="comments_h1">Join the conversation!</h1>
-<p style={{color: 'whitesmoke', textAlign: 'center', margin: '60px auto 30px', fontSize: '20px'}}>{loggedInUser ? 'Use the form below to add a comment and continue the discussion.' : 'Log in to post a comment.'}</p>
+<Chat/>
+<p style={{color: 'whitesmoke', textAlign: 'center', margin: '20px auto 30px', fontSize: '20px'}}>{loggedInUser ? 'Use the form below to add a comment and continue the discussion.' : 'Log in to post a comment.'}</p>
 
      <section style={{marginBottom: 0}} className="comments_list">
       <Alert style={{marginBottom: 0, maxWidth: '1000px'}} id="login_success" show={showSuccess} variant="success">
