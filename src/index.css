@@ -108,6 +108,16 @@ img.user_img {
   height: 80%;
 }
 
+.tips_title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.tips_span {
+  font-weight: bold;
+}
+
 /*html, body, #root, .anim {
   width: 100vw;
   height: 100vh;
