@@ -41,10 +41,11 @@ function ThreeDimensionalGame() {
     <OrbitControls/>
     <Center>
       <EffectComposer enabled={bloom}>
-      <Bloom mipmapBlur luminanceThreshold={1} mipmapBlur />
-      <PlayArea setEffect={setEffect} setBloom={setBloom} bloom={bloom}/>
-      <Table />
+      {/* <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} /> */}
+        <Bloom luminanceThreshold={1} mipmapBlur />
       </EffectComposer>
+      <PlayArea setEffect={setEffect} setBloom={setBloom} bloom={bloom}/>
+      <Table/>
     </Center>
   </Canvas>
   </section>
