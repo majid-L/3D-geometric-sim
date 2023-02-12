@@ -71,7 +71,7 @@ const handleSubmit = e => {
 
 const showDelete = e => {
   setConfirmDelete(e.target.id);
-}
+};
 
 const handleDelete = id => {
   return () => { 
@@ -88,7 +88,12 @@ const handleDelete = id => {
         }
     })
 }
-}
+};
+
+const handleError = ({ currentTarget }) => {
+  currentTarget.onerror = null; // prevents looping
+  currentTarget.src=`../../public/avatar${[0, 1, 2, 3, 4, 5, 6][Math.floor(Math.random() * 7)]}.png`;
+};
 
 return(<main>
 <h1 className="comments_h1">Join the conversation!</h1>
@@ -137,7 +142,7 @@ return(<main>
         margin: '1px 0', 
         borderRadius: '6px',
         border: '2px solid grey'
-        }} variant="left" src={comment.avatar_url} />
+        }} variant="left" src={comment.avatar_url} onError={handleError} />
         
         {loggedInUser === comment.username && !confirmDelete && 
             <Button id={comment._id} onClick={showDelete} style={{width: '100px', margin: '7px 0 0'}} variant="primary">
