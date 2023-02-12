@@ -1,16 +1,14 @@
-import { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from 'react-router-dom';
-import { GameControlsContext } from '../contexts/GameControlsContext';
 
 export const UserCard = ({id, username, accountOwner, email, avatar}) => {
-  const navigate = useNavigate();
-// const {setGameParameters} = useContext(GameControlsContext);
+const navigate = useNavigate();
 
-// const handleClick = () => {
-//   setGameParameters(prev => ({...prev, username}));
-// };
+const handleError = ({ currentTarget }) => {
+  currentTarget.onerror = null; // prevents looping
+  currentTarget.src=`../../public/avatar${[0, 1, 2, 3, 4, 5, 6][Math.floor(Math.random() * 7)]}.png`;
+};
 
 return (<Card className="user_card">
     <Card.Header>
@@ -23,7 +21,7 @@ return (<Card className="user_card">
           </Nav.Item>
         </Nav>
       </Card.Header>
-    <Card.Img variant="top" src={avatar} />
+    <Card.Img variant="top" src={avatar} onError={handleError}/>
     <Card.Body>
       <Card.Title>{username}</Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{accountOwner}</Card.Subtitle>
