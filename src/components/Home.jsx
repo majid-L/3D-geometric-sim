@@ -1,7 +1,7 @@
 import {CameraControls, PerspectiveCamera} from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Text } from "./Text";
-import { EffectComposer, GodRays, Glitch, Noise } from "@react-three/postprocessing";
+import { EffectComposer, GodRays, Glitch, Noise, SMAA } from "@react-three/postprocessing";
 import { forwardRef, Suspense, useMemo, useRef } from "react";
 import { BlendFunction, Resizer, KernelSize, GlitchMode } from "postprocessing";
 import * as THREE from "three";
@@ -88,9 +88,23 @@ function Stars({ position }) {
   )
 };
 
-const Home = () => {
- const [{ top }] = useSpring(() => ({ top: 0}));
+function HomeMesh () {
+  const [{ top }] = useSpring(() => ({ top: 0}));
+  const mesh = useRef();
+  const { viewport } = useThree();
+  
+  return (<mesh
+    ref={mesh}
+    scale={viewport.width < 26 ? viewport.width / 25 : 1}>
+    <Stars position={top.interpolate(top => [0, -1 + top / 20, 0])} />
+    <Text/>
+    <Effects />
+  </mesh>)
 
+};
+
+
+const Home = () => {
 return (
 <section className="anim">
   <Canvas
@@ -102,11 +116,7 @@ return (
     <CameraControls />
     <ambientLight intensity={0.8} />
     <pointLight position={[15, 15, 15]} intensity={1} />
-    <Suspense fallback={null}>
-    </Suspense>
-    <Effects />
-    <Stars position={top.interpolate(top => [0, -1 + top / 20, 0])} />
-    <Text/>
+    <HomeMesh/>
   </Canvas>
 </section>);
 };
