@@ -431,6 +431,10 @@ button#save {
   justify-content: center;
 }
 
+.leva-c-hwSNBG {
+  width: 120px
+}
+
 .leva-c-kWgxhW {
   margin-top: 150px;
   margin-right: 10vw;
@@ -440,6 +444,14 @@ button#save {
 .leva-c-kXfPOu {
   font-size: 12px;
   width: 50px;
+}
+
+#color, #edges, #background {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .leva-c-grzFYX {
@@ -460,7 +472,7 @@ button.leva-c-ihqPFh {
 
 button.leva-c-kobjwj {
   color: white;
-  width: 120px;
+  width: 121px;
   background-color: var(--leva-colors-accent2)
 }
 
@@ -489,7 +501,7 @@ button.leva-c-kobjwj {
   max-height: 1050px;
   border: 1px white solid;
   background-color: #696969;
-  background: rgba(15, 21, 22, 0.89);
+  background: rgba(22, 19, 15, 0.89);
   border-radius: 1.5em;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
