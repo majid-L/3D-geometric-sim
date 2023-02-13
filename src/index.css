@@ -406,15 +406,6 @@ div.user_title {
   margin: 0 auto 
 }
 
-
-#effects {
-  /*border-radius: 10px !important;
-  margin: -33px 30px;
-  display: block;
-  position: absolute;
-  top: 10vw; */
-}
-
 #three-d-btn-group #start {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -430,6 +421,10 @@ div.user_title {
 button#save {
   background-color: rgb(255, 115, 0);
   border: 1px solid orange
+}
+
+.leva-c-kWgxhW-bCBHqk-fill-false {
+  width: 300px !important
 }
 
 .leva-c-bDGmTT {
@@ -452,8 +447,21 @@ button#save {
   margin: auto;
 }
 
-.leva-c-hwSNBG {
-  width: 95%;
+.leva-c-bDGmTT {
+  display: inline-flex !important;
+  justify-content: space-around !important;
+}
+
+button.leva-c-ihqPFh {
+  padding: 6px 5px 10px;
+  width: 250px;
+  height: 30px
+}
+
+button.leva-c-kobjwj {
+  color: white;
+  width: 120px;
+  background-color: var(--leva-colors-accent2)
 }
 
 .cellgriddead {
