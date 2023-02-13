@@ -1,5 +1,5 @@
 import Cell from "./Cell";
-import { useRef, useContext } from "react";
+import { useRef, useContext, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { GameControlsContext, boardArray } from "../contexts/GameControlsContext";
 import PhysicsScene from "./PhysicsScene";
@@ -21,15 +21,18 @@ function PlayArea({ bloom}) {
 
   useControls({" ": buttonGroup({
     "start": () => {
+      setGameParameters(prev => {
+        console.log(prev);
+        return {...prev, isRunning: true};
+      });
+      gameRef.current = true;
       if (!isRunning && !gameRef.current) {
-        setGameParameters(prev => ({...prev, isRunning: true}));
-        gameRef.current = true;
-        runGame();
+       // runGame();
       }
     },
-    "stop": () => {
-      setGameParameters(prev => ({...prev, isRunning: false}));
+    "stop": (e) => {
       gameRef.current = false;
+      setGameParameters(prev => ({...prev, isRunning: false}));
     }
   })});
 
@@ -160,7 +163,7 @@ function PlayArea({ bloom}) {
   
   const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
   
-  const runGame = useCallback(() => {
+  /*const runGame = () => {
     if (!gameRef.current) {
       return;
     } else {
@@ -198,14 +201,50 @@ function PlayArea({ bloom}) {
     };
     return {...prev, configuration: newGameGrid};
   });
-  setTimeout(runGame, intervalRef.current);
+ // setTimeout(runGame, intervalRef.current);
     }
-  }, [interval]);
+  };
   
   //setGameParameters(prev => ({...prev, configuration: newGameGrid}));
-   //useEffect(() => {
-   // setTimeout(runGame, interval);
-   //}, [configuration]);
+   useEffect(() => {
+    setTimeout(runGame, interval);
+  }, [configuration, isRunning]);*/
+
+  const runGame = () => {
+    if (!gameRef.current) return;
+    const newGameGrid = configuration.map(m => m.map(m => m));
+    for (let i = 0; i < configuration.length; i++) {
+      for (let j = 0; j < configuration[i].length ; j++) {
+        let liveNeighbours = 0;
+        coordOffset.forEach(([x, y]) => {
+          if (!wrap) {
+             if ( i + x >= 0 
+             && i + x < configuration.length 
+             && j + y >= 0 
+             && j + y < configuration[i].length) {
+               liveNeighbours += configuration[i + x][j + y];
+             }
+          } else if (wrap) {
+          const xWrapAroundOffset = (i + x + configuration[i].length) % configuration[i].length;
+          const yWrapAroundOffset = (j + y + configuration.length) % configuration.length;
+          liveNeighbours += configuration[xWrapAroundOffset][yWrapAroundOffset];
+          };
+        });
+        if (liveNeighbours < 2 || liveNeighbours > 3) {
+          newGameGrid[i][j] = 0;
+        } else if (configuration[i][j] === 0 && liveNeighbours === 3) {
+          newGameGrid[i][j] = 1;
+        } else if (configuration[i][j] === 1 && [2, 3].includes(liveNeighbours)) {
+          newGameGrid[i][j] = 1;
+        }
+      }
+    };
+    setGameParameters(prev => ({...prev, configuration: newGameGrid}));
+  };
+  
+   useEffect(() => {
+    setTimeout(runGame, interval);
+   }, [configuration]);
   
   const boardConfig = gameGrid => {
     const cellCoords = [];
