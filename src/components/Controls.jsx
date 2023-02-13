@@ -34,7 +34,7 @@ export function Controls() {
       state.camera.zoom = THREE.MathUtils.lerp(state.camera.zoom, zoom * 5.3, 0.4);
       state.camera.updateProjectionMatrix();
     });
-        
+    
     useEffect(() => {
       setGameParameters(prev => ({...prev, bloomIntensity}));
     }, [bloomIntensity]);
