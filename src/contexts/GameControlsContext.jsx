@@ -2,8 +2,6 @@ import { createContext, useState } from "react";
 import * as THREE from "three";
 import img from "../assets/green.png";
 
-//const boardArray = (str => str.split(" ").map(m => m.split("").map(m => +m)))(boardString);
-
 export const boardArray = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -36,6 +34,7 @@ export const GameControlsContext = createContext();
 export const GameControlsProvider = ({children}) => {
     const [texture] = useState(new THREE.TextureLoader().load(img));
     const [controls, setControls] = useState({button: '', speedModifier: 0});
+    const [bloom, setBloom] = useState(true);
     const [gameParameters, setGameParameters] = useState({
         isRunning: false,
         configuration: boardArray,
@@ -48,10 +47,12 @@ export const GameControlsProvider = ({children}) => {
         boardStyle: 'threeDimensional',
         floating3DText: true,
         sizeModifier: 0,
-        emissive: 'hotpink'
+        emissive: 'hotpink',
+        edgeColor: 'grey',
+        bloomIntensity: 2
     });
 
-    return <GameControlsContext.Provider value={{controls, setControls, texture, gameParameters, setGameParameters}}>
+    return <GameControlsContext.Provider value={{controls, setControls, texture, gameParameters, setGameParameters, bloom, setBloom}}>
         {children}
     </GameControlsContext.Provider>
 };
