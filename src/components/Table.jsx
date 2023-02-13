@@ -1,15 +1,13 @@
-import img from "../assets/green.png";
-import * as THREE from "three";
 import { Float, Text3D, useMatcapTexture } from "@react-three/drei";
 import retro from '../assets/retro.json';
-import { useContext, useEffect, useState } from "react";
-import { GameControlsContext, boardArray } from "../contexts/GameControlsContext";
+import { useContext } from "react";
+import { GameControlsContext } from "../contexts/GameControlsContext";
 
 function Table() {
   //const texture = new THREE.TextureLoader().load(img);
  //const [boxLength, setBoxLength] = useState('');
-  
-  const {controls, texture, gameParameters: {configuration, floating3DText}} = useContext(GameControlsContext);
+ const {controls, texture, gameParameters: {configuration, floating3DText}} = useContext(GameControlsContext);
+ 
   //const boxLength = configuration.length - 1;
 
   //useEffect(() => {
