@@ -21,17 +21,18 @@ const InteractTooltip = (
   );
 
 
-const GameControls = () => {
+const GameControls = ({bloom}) => {
 const [patternName, setPatternName] = useState('');
 const [show, setShow] = useState(false);
 const [showAlert, setShowAlert] = useState(false);
 const [alertMsg, setAlertMsg] = useState('');
+const [click, setClick] = useState(0);
 
 const [showSuccess, setShowSuccess] = useState(false);
 const location = useLocation();
 const navigate = useNavigate();
 
-const { controls, setControls, gameParameters: {isRunning, configuration, physics, username}} = useContext(GameControlsContext);
+const { setControls, gameParameters: {isRunning, configuration, physics, username}} = useContext(GameControlsContext);
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
@@ -39,13 +40,14 @@ const handleShow = () => setShow(true);
 const patternBody = configuration.map(m => m.join("")).join(" ");
 
 const handleClick = e => {
-  let click = 0;
   if (!e.target.id || e.target.id === 'physics') return;
 
   if (e.target.id === "faster" || e.target.id === "slower") {
-    setControls({button: e.target.id, speedModifier: ++click});
+    setClick(click + 1);
+    setControls({button: e.target.id, speedModifier: click});
   } else if (e.target.id === "larger" || e.target.id === "smaller") {
-    setControls({button: e.target.id, sizeModifier: ++click});
+    setClick(click + 1);
+    setControls({button: e.target.id, sizeModifier: click});
   } else {
     setControls(prev => ({...prev, button: e.target.id}))
   }
@@ -123,14 +125,19 @@ return (<>
  </OverlayTrigger>
 
   {location.pathname[1] === "3" && <>
-   <DropdownButton disabled={physics} as={ButtonGroup} title="Effects" className="bg-nested-dropdown">
+   <DropdownButton disabled={physics} as={ButtonGroup} title="Scene" className="bg-nested-dropdown">
    <Dropdown.Item id="stars" eventKey="1">Stars</Dropdown.Item>
    <Dropdown.Item id="sky" eventKey="2">Sky</Dropdown.Item>
-   <Dropdown.Item id="bloom" eventKey="2">Bloom (toggle)</Dropdown.Item>
+   {/* <Dropdown.Item id="bloom" eventKey="2">Bloom (toggle)</Dropdown.Item> */}
    <Dropdown.Item id="toggleText" variant="secondary">3D text (toggle)</Dropdown.Item>
    </DropdownButton>
 
-   <DropdownButton disabled={physics} as={ButtonGroup} title="Block color" className="bg-nested-dropdown">
+   <DropdownButton disabled={physics} as={ButtonGroup} title="Bloom" className="bg-nested-dropdown">
+   <Dropdown.Item id="enableBloom" eventKey="1">Enable</Dropdown.Item>
+   <Dropdown.Item id="disableBloom" eventKey="2">Disable</Dropdown.Item>
+   </DropdownButton>
+   
+   <DropdownButton disabled={physics} as={ButtonGroup} title="Cell color" className="bg-nested-dropdown">
    <Dropdown.Item id="red" eventKey="1">Red</Dropdown.Item>
    <Dropdown.Item id="hotpink" eventKey="2">Pink</Dropdown.Item>
    <Dropdown.Item id="green" eventKey="2">Green</Dropdown.Item>
@@ -141,10 +148,10 @@ return (<>
    <Dropdown.Item id="black" variant="secondary">Black</Dropdown.Item>
    </DropdownButton>
 
- <DropdownButton as={ButtonGroup} id="physics" title="Physics" className="bg-nested-dropdown">
+ {/* <DropdownButton as={ButtonGroup} id="physics" title="Physics" className="bg-nested-dropdown">
    <Dropdown.Item id="enablePhysics" eventKey="1">Enable</Dropdown.Item>
    <Dropdown.Item id="disablePhysics" eventKey="2">Disable</Dropdown.Item>
- </DropdownButton>
+ </DropdownButton> */}
   </>}
  
  <Button disabled={physics} variant="primary" id="save" onClick={handleShow}>
