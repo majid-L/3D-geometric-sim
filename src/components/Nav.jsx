@@ -12,7 +12,7 @@ import { ThreeD } from "./Icons";
 function Navigation() {
 const [showSidebar, setShowSidebar] = useState(false);
 const [patterns, setPatterns] = useState([]);
-const { gameParameters: { configuration, username }, setGameParameters } = useContext(GameControlsContext);
+const { gameParameters: { username }, setGameParameters } = useContext(GameControlsContext);
 
 const navigate = useNavigate();
 
