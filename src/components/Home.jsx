@@ -11,7 +11,7 @@ import {
   import { Canvas, useThree } from "@react-three/fiber";
   import retro from "../assets/retro.json";
   import { CubeTextureLoader } from "three";
-  import { Bloom, EffectComposer } from "@react-three/postprocessing";
+  import { Bloom, EffectComposer, GodRays } from "@react-three/postprocessing";
   
   const Home = () => {
     function MatCap({ texture }) {
@@ -24,6 +24,7 @@ import {
         <Canvas>
           <EffectComposer>
             <Bloom mipmapBlur luminanceThreshold={1}></Bloom>
+            
           </EffectComposer>
           <PerspectiveCamera makeDefault fov={75} position={[10, 10, 10]} />
           <CameraControls />
