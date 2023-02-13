@@ -2,9 +2,10 @@ import { GameControlsContext } from "../contexts/GameControlsContext";
 import GameControls from "./GameControls";
 import { v4 as uuidv4 } from "uuid";
 import { useContext } from "react";
+import { Controls } from "./Controls";
 
 const TwoDimensionalBoard = () => {
-const { gameParameters: {isRunning, configuration, interact}, setGameParameters } = useContext(GameControlsContext);
+const { gameParameters: {isRunning, configuration, interact, emissive, edgeColor}, setGameParameters } = useContext(GameControlsContext);
 
 const gridcolumns = "1fr ".repeat(configuration.length);
 
@@ -13,7 +14,9 @@ return (<>
     <div className="cellboard" style={{ gridTemplateColumns: gridcolumns }}>
       {configuration.map((row, i) => {
         return row.map((cell, k) => {
-          return <div key={uuidv4()} className={configuration[i][k] === 1 ? "cellgridliving" : "cellgriddead"} onClick={() => {
+          return <div key={uuidv4()} 
+          style={configuration[i][k] ? {backgroundColor: emissive, boxShadow: `0 0 6px 6px inset ${edgeColor}`} : {}}
+          className={configuration[i][k] === 1 ? "cellgridliving" : "cellgriddead"} onClick={() => {
             if (interact === true && !isRunning) {
               setGameParameters(prev => {
                 const newConfig = structuredClone(configuration);
@@ -26,6 +29,7 @@ return (<>
       })}
     </div>
     <GameControls />
+    <Controls/>
 </>);
 };
 
