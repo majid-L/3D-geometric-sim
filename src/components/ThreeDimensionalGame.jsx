@@ -1,57 +1,42 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from 'three'
-import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles, Stars, Effects } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
+import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles, Stars } from "@react-three/drei";
 import PlayArea from "./PlayArea";
 import Table from "./Table";
-import { useControls } from 'leva'
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import GameControls from './GameControls';
 import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
 import { useRef } from "react";
+import { Controls } from "./Controls";
+import { useControls } from "leva";
 
-function Zoom() {
-    const { zoom } = useControls({ zoom: { value: 1, min: 0, max: 2.5, step: 0.01 } })
-    return useFrame((state) => {
-      state.camera.zoom = THREE.MathUtils.lerp(state.camera.zoom, zoom * 5.3, 0.4)
-      state.camera.updateProjectionMatrix()
-    })
-  };
 
-function BoardMesh ({setEffect, bloom, setBloom}) {
+function BoardMesh ({setEffect, bloom}) {
   const mesh = useRef();
   const { viewport } = useThree();
-  console.log(viewport);
-
-  return (<mesh
-    position={[35, 30, 15]}
-    ref={mesh}
-    scale={viewport.width < 100 ? viewport.width / 80 : 1}>
-    <PlayArea setEffect={setEffect} setBloom={setBloom} bloom={bloom}/>
+  
+  return (<mesh ref={mesh} scale={viewport.width < 100 ? viewport.width / 80 : 1}>
+    <PlayArea setEffect={setEffect} bloom={bloom}/>
     <Table/>
-  </mesh>)
-
-};
+    </mesh>)
+  };
 
 
 function ThreeDimensionalGame() {
-  const [effect, setEffect] = useState('stars');
-  const [bloom, setBloom] = useState(false);
- 
-  useEffect(() => {
-   setTimeout(() => setBloom(true), 100);
-  }, []);
+  const { bloom } = useControls({"bloom" : true});
+  const { scene } = useControls({scene : { options: { sky: 'sky', stars: 'stars'}}});
 
   return (
   <main id="three-d-main">
-  <GameControls/>
+  <GameControls bloom={bloom}/>
   <section className="anim">
-  <Canvas>
-    <Zoom/>
-    {effect === "stars" && <Stars radius={80} depth={50} count={7000} factor={5} saturation={0} fade speed={1}/>}
-    {effect === "sky" && <Sky sunPosition={[0, 1, 3]} exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
+  <Canvas
+  camera={{ position: [30, 30, 40] }}>
+    <Controls/>
+    {scene === "stars" && <Stars radius={80} depth={50} count={7000} factor={5} saturation={0} fade speed={1}/>}
+    {scene === "sky" && <Sky sunPosition={[0, 1, 3]} exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
     {!bloom && <Sparkles {...props}/>}
-    <PerspectiveCamera makeDefault fov={55} position={[47, 40, 59]} rotation={[0, 30, 20]}/>
     <pointLight position={[10, 0, 10]}/>
+    {/* <PerspectiveCamera makeDefault fov={75} position={[35, 30, 5]}/> */}
     <CameraControls/>
     <OrbitControls/>
     <Center>
@@ -62,7 +47,7 @@ function ThreeDimensionalGame() {
         {/* <Bloom luminanceThreshold={1} mipmapBlur /> */}
       </EffectComposer>
       </Suspense>
-      <BoardMesh setEffect={setEffect} bloom={bloom} setBloom={setBloom}/>
+      <BoardMesh bloom={bloom}/>
     </Center>
   </Canvas>
   </section>
@@ -81,9 +66,9 @@ const props = {
     /** Color of particles (default: 100) */
     color: [100, 100, 50],
     /** Size of particles (default: randomized between 0 and 1) */
-    size: 5,
+    size: 30,
     /** The space the particles occupy (default: 1) */
-    scale: [100, 100, 100],
+    scale: [250, 250, 250],
     /** Movement factor (default: 1) */
     noise: 1,
   };
