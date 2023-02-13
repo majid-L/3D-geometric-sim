@@ -1,7 +1,14 @@
+import { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import { GameControlsContext } from '../contexts/GameControlsContext';
 
-export const SavePattern = () => {
+export const SavePattern = ({show, handleClose, setPatternName, handleSubmit}) => {
+const { gameParameters : {username} } = useContext(GameControlsContext);
+const navigate = useNavigate();
+
 return (<Modal show={show} onHide={handleClose}>
     <Modal.Header closeButton>
       <Modal.Title>{username ? 'Save pattern' : 'Sign-in required.'}</Modal.Title>
