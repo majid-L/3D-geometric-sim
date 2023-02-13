@@ -21,6 +21,8 @@ function HiddenSidebar({showSidebar, setShowSidebar}) {
           <p>The game keeps constant track of your board configuration such that you're able to freely switch between the 3D and 2D boards while the game continues to make its computations and your pattern continues to evolve.</p>
 
           <p className="tips_title">Camera controls</p>
+          In the 3D view, you can fully control the camera's position and distance with your mouse.
+          <div style={{marginBottom: '6px'}}/>
           <ul><li>To zoom in and out, use the provided slider rather than your mouse scroll wheel.</li>
           <li> To rotate the camera, hold down the left mouse button and move your mouse around. (The centre of your screen is used as a fixed pivot.)</li>
           <li>To move the camera, hold down the right moust button and move your mouse around.</li>
