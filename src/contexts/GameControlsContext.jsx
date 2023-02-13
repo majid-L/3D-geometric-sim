@@ -48,7 +48,10 @@ export const GameControlsProvider = ({children}) => {
         floating3DText: true,
         sizeModifier: 0,
         emissive: 'hotpink',
+        cellColor: 'rgb(250, 162, 55)',
         edgeColor: 'grey',
+        background: 'rgba(22, 19, 15, 0.89)',
+        boxShadow: 'rgba(187, 100, 1, 0.959)',
         bloomIntensity: 2
     });
 
