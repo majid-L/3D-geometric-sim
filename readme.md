@@ -8,3 +8,6 @@
 - Login form validation
 - Plentiful feedback regarding errors and loading states.
 - Optimistic rendering.
+
+### Credits
+Stars animation created by Paul Henschel (https://codesandbox.io/u/drcmda).
