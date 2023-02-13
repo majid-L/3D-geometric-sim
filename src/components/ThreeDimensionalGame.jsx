@@ -1,13 +1,13 @@
 import { Canvas, useThree } from "@react-three/fiber";
-import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles, Stars } from "@react-three/drei";
+import { CameraControls, Center, OrbitControls, Sky, Sparkles, Stars } from "@react-three/drei";
 import PlayArea from "./PlayArea";
 import Table from "./Table";
 import React, { Suspense } from "react";
-import GameControls from './GameControls';
 import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
 import { useRef } from "react";
 import { Controls } from "./Controls";
 import { useControls } from "leva";
+import NewPattern from "./NewPattern";
 
 
 function BoardMesh ({setEffect, bloom}) {
@@ -27,7 +27,7 @@ function ThreeDimensionalGame() {
 
   return (
   <main id="three-d-main">
-  <GameControls bloom={bloom}/>
+  <NewPattern/>
   <section className="anim">
   <Canvas
   camera={{ position: [30, 30, 40] }}>
