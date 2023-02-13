@@ -8,7 +8,7 @@ import TwoDimensionalBoard from "./TwoDimensionalBoard";
 import { useControls, button, buttonGroup } from "leva";
 import { useCallback } from "react";
 
-function PlayArea({setEffect, bloom}) {
+function PlayArea({ bloom}) {
   const { gameParameters: {isRunning, configuration, wrap, interact, interval, physics}, setGameParameters } = useContext(GameControlsContext);
  
   const gameRef = useRef(isRunning);
@@ -21,11 +21,11 @@ function PlayArea({setEffect, bloom}) {
 
   useControls({" ": buttonGroup({
     "start": () => {
-      if (!gameRef.current) {
+      if (!isRunning && !gameRef.current) {
         setGameParameters(prev => ({...prev, isRunning: true}));
         gameRef.current = true;
         runGame();
-      };
+      }
     },
     "stop": () => {
       setGameParameters(prev => ({...prev, isRunning: false}));
