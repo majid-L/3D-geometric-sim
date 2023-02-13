@@ -135,7 +135,6 @@ body,
 /* #root, */
 .anim {
   /*width: 100%;*/
-  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -436,9 +435,9 @@ button#save {
 }
 
 .leva-c-kWgxhW {
-  margin-top: 150px;
-  margin-right: 10vw;
-  font-size: 14px;
+  position: absolute;
+  left: 3vw;
+  margin-top: 100px;
 }
 
 .leva-c-kXfPOu {
