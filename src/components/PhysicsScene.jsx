@@ -32,12 +32,14 @@ function PhysicsScene ({bloom}) {
 
   function Box() {
     const [ref, api] = useBox(() => ({ mass: 1, position : [0, 2, 0] }));
-    const vector = Math.random();
-    console.log(vector);
-   return (
-    <mesh 
+    return (
+      <mesh 
       onClick={() => {
-      api.velocity.set(2, 5, 0);
+      api.velocity.set(
+        +String(Math.random())[2]/2,
+        +String(Math.random())[2]/2,
+        +String(Math.random())[2]/2
+      );
       }} 
       ref={ref} 
       position={[0, 2, 0]}>
