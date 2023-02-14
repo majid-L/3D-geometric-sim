@@ -1,9 +1,8 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import { CameraControls, Center, OrbitControls, Sky, Sparkles, Stars } from "@react-three/drei";
-// import PlayArea from "./PlayArea";
 import Table from "./Table";
 import React, { Suspense } from "react";
-import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
+import { Bloom, EffectComposer, Noise, SMAA } from "@react-three/postprocessing";
 import { useRef } from "react";
 import { Controls } from "./Controls";
 import { useControls } from "leva";
@@ -13,6 +12,7 @@ import { useContext } from "react";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 import Cell from "./Cell";
 import PhysicsScene from "./PhysicsScene";
+import { BlendFunction } from 'postprocessing';
 
 
 function BoardMesh ({bloom}) {
@@ -32,25 +32,25 @@ function BoardMesh ({bloom}) {
   };
 
   return (<mesh ref={mesh} scale={viewport.width < 97 ? viewport.width / 80 : 1}>
-    {/* <PlayArea/> */}
-    <Table/>
-    {physics ? <PhysicsScene/> : boardConfig(configuration).map(cell => {
+    {physics && <PhysicsScene bloom={bloom}/>}
+    {!physics && <><Table/>{boardConfig(configuration).map(cell => {
         return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} bloom={bloom}/>
-       })}
+       })}</>}
     </mesh>)
   };
 
 
 function ThreeDimensionalGame() {
   const { bloom } = useControls({"bloom" : true});
-  const { scene } = useControls({scene : { options: { sky: 'sky', stars: 'stars'}}});
+  const { scene } = useControls({scene : { options: { stars: 'stars', sky: 'sky'}}});
+  const { noise } = useControls({noise : false});
 
   return (
   <main id="three-d-main">
   <NewPattern/>
   <section className="anim">
   <Canvas
-  camera={{ position: [30, 30, 40] }}>
+  camera={{ position: [30, 30, 40], fov: 70 }}>
     <Controls/>
     {scene === "stars" && <Stars radius={80} depth={50} count={7000} factor={5} saturation={0} fade speed={1}/>}
     {scene === "sky" && <Sky sunPosition={[0, 1, 3]} exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
@@ -65,6 +65,10 @@ function ThreeDimensionalGame() {
       <SMAA />
       <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.9} height={300} mipmapBlur />
         {/* <Bloom luminanceThreshold={1} mipmapBlur /> */}
+      {noise && <Noise
+       premultiply // enables or disables noise premultiplication
+       blendFunction={BlendFunction.ADD} // blend mode
+       />}
       </EffectComposer>
       </Suspense>
       <BoardMesh bloom={bloom}/>
