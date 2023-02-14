@@ -1,44 +1,56 @@
-import Cell from "./Cell";
-import { useRef, useContext, useEffect } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useRef, useContext, useState, useEffect } from "react";
 import { GameControlsContext, boardArray } from "../contexts/GameControlsContext";
-import PhysicsScene from "./PhysicsScene";
-import { useLocation } from "react-router-dom";
-import TwoDimensionalBoard from "./TwoDimensionalBoard";
 import { useControls, button, buttonGroup } from "leva";
+import { useLocation } from "react-router-dom";
+import { useMemo } from "react";
 import { useCallback } from "react";
 
-function PlayArea({ bloom}) {
-  const { gameParameters: {isRunning, configuration, wrap, interact, interval, physics}, setGameParameters } = useContext(GameControlsContext);
- 
+function PlayArea() {
+  const { gameParameters: {configuration, wrap, interval}, setGameParameters } = useContext(GameControlsContext);
+
+  const [isRunning, setIsRunning] = useState(false);
   const gameRef = useRef(isRunning);
   gameRef.current = isRunning;
-
   const intervalRef = useRef();
   intervalRef.current = interval;
 
-  const url = useLocation().pathname;
+  const [path, setPath] = useState('');
+  const [renderCount, setRenderCount] = useState(0);
+  const location = useLocation().pathname.slice(1, 3);
+
+  // const [abortLoop, setAbortLoop] = useState(false);
+
+  useEffect(() => {
+    setPath(location);
+  }, []);
+  
+  useEffect(() => {
+    if (renderCount > 0) {
+      setRenderCount(999);
+      setAbortLoop(true);
+    };
+  }, [path]);
 
   useControls({" ": buttonGroup({
     "start": () => {
-      setGameParameters(prev => {
-        console.log(prev);
-        return {...prev, isRunning: true};
-      });
-      gameRef.current = true;
-      if (!isRunning && !gameRef.current) {
-       // runGame();
+      if (!gameRef.current) {
+        setIsRunning(true);
+        gameRef.current = true;
+        runGame();
       }
-    },
-    "stop": (e) => {
-      gameRef.current = false;
-      setGameParameters(prev => ({...prev, isRunning: false}));
-    }
-  })});
+      },
+      "stop": () => {
+        setIsRunning(false);
+        gameRef.current = false;
+        runGame();
+      }
+    })
+  });
+  //console.log(isRunning, gameRef.current);
 
   useControls({ reset : button(() => {
     gameRef.current = false;
-    setGameParameters(prev => ({...prev, isRunning: false, configuration: boardArray, sizeModifier: 0}));
+    setGameParameters(prev => ({...prev, configuration: boardArray, sizeModifier: 0}));
   })});
 
   useControls({ randomise : button(() => {
@@ -49,7 +61,7 @@ function PlayArea({ bloom}) {
           return Math.random() > 0.7 ? 1 : 0;
         }));
       };
-      return {...prev, configuration: randomBoard};
+      return {...prev, isRunning: false, configuration: randomBoard};
     })
   })});
 
@@ -161,13 +173,14 @@ function PlayArea({ bloom}) {
     }
   }, [controls]);*/
   
-  const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
-  
-  /*const runGame = () => {
+const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
+
+  const runGame = useCallback(() => {
     if (!gameRef.current) {
       return;
-    } else {
-      setGameParameters(prev => {
+    };
+    console.log('hi');
+    setGameParameters(prev => {
       const {configuration} = prev;
       intervalRef.current = prev.interval;
       const newGameGrid = configuration.map(m => m.map(m => m));
@@ -201,16 +214,25 @@ function PlayArea({ bloom}) {
     };
     return {...prev, configuration: newGameGrid};
   });
- // setTimeout(runGame, intervalRef.current);
-    }
-  };
-  
-  //setGameParameters(prev => ({...prev, configuration: newGameGrid}));
-   useEffect(() => {
-    setTimeout(runGame, interval);
-  }, [configuration, isRunning]);*/
 
-  const runGame = () => {
+  setTimeout(runGame, intervalRef.current);
+}, [gameRef.current]);
+}
+export default PlayArea;
+
+/*const loop = () => {
+    useGameLoop(setGameParameters, wrap, intervalRef)();
+    setTimeout(loop, intervalRef.current);
+}
+
+useEffect(() => {
+  if (gameRef.current) {
+    loop();
+  };
+}, [isRunning]);*/
+  //setGameParameters(prev => ({...prev, configuration: newGameGrid}));
+
+  /*const runGame = () => {
     if (!gameRef.current) return;
     const newGameGrid = configuration.map(m => m.map(m => m));
     for (let i = 0; i < configuration.length; i++) {
@@ -244,9 +266,9 @@ function PlayArea({ bloom}) {
   
    useEffect(() => {
     setTimeout(runGame, interval);
-   }, [configuration]);
+   }, [configuration, isRunning]);*/
   
-  const boardConfig = gameGrid => {
+ /* const boardConfig = gameGrid => {
     const cellCoords = [];
     for (let i = 0; i < gameGrid.length; i++) {
       for (let j = 0; j < gameGrid[i].length; j++) {
@@ -257,15 +279,13 @@ function PlayArea({ bloom}) {
   };
 
   if (url[1] === '3' && physics) {
-    return <PhysicsScene></PhysicsScene>
+    return <PhysicsScene/>
   } else if (url[1] === '3') {
     return (
       boardConfig(configuration).map(cell => {
-        return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} isRunning={isRunning} bloom={bloom}/>
+        return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} bloom={bloom}/>
        })
     );
   } else if (url[1] === '2') {
     return <TwoDimensionalBoard/>
-  }
-}
-export default PlayArea;
+  }*/
