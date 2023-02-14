@@ -8,11 +8,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { GameControlsProvider } from './contexts/GameControlsContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <BrowserRouter>
     <GameControlsProvider>
      <App />
     </GameControlsProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+    </BrowserRouter>,
 );
