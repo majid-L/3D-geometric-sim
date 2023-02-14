@@ -1,8 +1,6 @@
-import { useRef, useContext, useState, useEffect } from "react";
+import { useRef, useContext, useState } from "react";
 import { GameControlsContext, boardArray } from "../contexts/GameControlsContext";
 import { useControls, button, buttonGroup } from "leva";
-import { useLocation } from "react-router-dom";
-import { useMemo } from "react";
 import { useCallback } from "react";
 
 function PlayArea() {
@@ -13,23 +11,6 @@ function PlayArea() {
   gameRef.current = isRunning;
   const intervalRef = useRef();
   intervalRef.current = interval;
-
-  const [path, setPath] = useState('');
-  const [renderCount, setRenderCount] = useState(0);
-  const location = useLocation().pathname.slice(1, 3);
-
-  // const [abortLoop, setAbortLoop] = useState(false);
-
-  useEffect(() => {
-    setPath(location);
-  }, []);
-  
-  useEffect(() => {
-    if (renderCount > 0) {
-      setRenderCount(999);
-      setAbortLoop(true);
-    };
-  }, [path]);
 
   useControls({" ": buttonGroup({
     "start": () => {
@@ -179,7 +160,7 @@ const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0]
     if (!gameRef.current) {
       return;
     };
-    console.log('hi');
+    
     setGameParameters(prev => {
       const {configuration} = prev;
       intervalRef.current = prev.interval;
