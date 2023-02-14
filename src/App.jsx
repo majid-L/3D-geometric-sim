@@ -1,6 +1,6 @@
 import "./App.css";
 import ThreeDimensionalGame from "./components/ThreeDimensionalGame";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Navigation from "./components/Nav";
 import Home from "./components/Home";
 import Tutorial from "./components/Tutorial";
@@ -15,11 +15,12 @@ import TwoDimensionalBoard from "./components/TwoDimensionalBoard";
 import PlayArea from "./components/PlayArea";
 
 function App() {
+const location = /\d/.test(+useLocation().pathname[1]);
 
   return (
     <div className="App">
       <Navigation/>
-      <PlayArea/>
+      {location && <PlayArea/>}
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/3dgame" element={<ThreeDimensionalGame/>}/>
