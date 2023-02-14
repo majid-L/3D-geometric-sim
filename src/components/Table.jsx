@@ -3,24 +3,17 @@ import retro from '../assets/retro.json';
 import { useContext } from "react";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 
-function Table() {
-  //const texture = new THREE.TextureLoader().load(img);
- //const [boxLength, setBoxLength] = useState('');
- const {controls, texture, gameParameters: {configuration, floating3DText}} = useContext(GameControlsContext);
- 
-  //const boxLength = configuration.length - 1;
 
-  //useEffect(() => {
-  //  setBoxLength(configuration.length - 1)
-  //}, [sizeModifier]);
+function Table() {
+ const {texture, gameParameters: {configuration, floating3DText}} = useContext(GameControlsContext);
+ 
   const boxLength = configuration.length - 1;
   function MatCap({texture}) {
     const [matcap] = useMatcapTexture(texture, 256);
 
     return <meshMatcapMaterial matcap={matcap} />
   };
-
-  if (controls.button !== "enablePhysics") {
+  
   return (
     <><mesh position={[boxLength / 2, -1, boxLength / 2]}>
       <meshMatcapMaterial
@@ -91,6 +84,5 @@ function Table() {
       </Float></mesh>}
     </>
   );
-}
 }
 export default Table;
