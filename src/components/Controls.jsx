@@ -17,8 +17,8 @@ export function Controls() {
 
     const { interval } = useControls({ interval: { value: 600, min: 0, max: 1500, step: 1 } });
     const { wrap } = useControls({ wrap : true});
-    const { "color": emissive } = threeDBoard && useControls({"color" : 'hotpink'});
-    const {"color": cellColor} = twoDBoard && useControls({"color": 'rgb(250, 162, 55)'});
+    const { "block color": emissive } = threeDBoard && useControls({"block color" : 'hotpink'});
+    const {"cell color": cellColor} = twoDBoard && useControls({"cell color": 'rgb(250, 162, 55)'});
     const { "edges": edgeColor } = threeDBoard && useControls({"edges" : 'grey'});
 
     const {"box shadow": boxShadow} = twoDBoard && useControls({"box shadow": 'rgb(187, 100, 1)'});
