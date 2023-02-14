@@ -26,7 +26,7 @@ export function Controls() {
     const { "3D text" : text} = threeDBoard && useControls({"3D text": true});
     const {interact} = useControls({interact: true});
 
-    const {physics} = threeDBoard && useControls({physics: false});
+    const {physics} = threeDBoard && useControls({physics: true});
 
     const {background} = twoDBoard && useControls({background: 'rgb(22, 19, 15)'});
     
