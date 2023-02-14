@@ -1,6 +1,6 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import { CameraControls, Center, OrbitControls, Sky, Sparkles, Stars } from "@react-three/drei";
-import PlayArea from "./PlayArea";
+// import PlayArea from "./PlayArea";
 import Table from "./Table";
 import React, { Suspense } from "react";
 import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
@@ -8,15 +8,35 @@ import { useRef } from "react";
 import { Controls } from "./Controls";
 import { useControls } from "leva";
 import NewPattern from "./NewPattern";
+import { v4 as uuidv4 } from 'uuid';
+import { useContext } from "react";
+import { GameControlsContext } from "../contexts/GameControlsContext";
+import Cell from "./Cell";
+import PhysicsScene from "./PhysicsScene";
 
 
-function BoardMesh ({setEffect, bloom}) {
+function BoardMesh ({bloom}) {
+  const {gameParameters : {configuration, interact, physics}, setGameParameters} = useContext(GameControlsContext);
+
   const mesh = useRef();
   const { viewport } = useThree();
-  
-  return (<mesh ref={mesh} scale={viewport.width < 100 ? viewport.width / 80 : 1}>
-    <PlayArea setEffect={setEffect} bloom={bloom}/>
+
+  const boardConfig = gameGrid => {
+    const cellCoords = [];
+    for (let i = 0; i < gameGrid.length; i++) {
+      for (let j = 0; j < gameGrid[i].length; j++) {
+        cellCoords.push({ coords: [i, 0, j], alive: gameGrid[i][j] });
+      }
+    }
+    return cellCoords;
+  };
+
+  return (<mesh ref={mesh} scale={viewport.width < 97 ? viewport.width / 80 : 1}>
+    {/* <PlayArea/> */}
     <Table/>
+    {physics ? <PhysicsScene/> : boardConfig(configuration).map(cell => {
+        return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} bloom={bloom}/>
+       })}
     </mesh>)
   };
 
