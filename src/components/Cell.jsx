@@ -2,12 +2,9 @@ import { Edges } from "@react-three/drei"
 import { useContext, useEffect, useState } from "react";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 
-const bloomIntensities = [0.7, 1.4, 2.4, 3, 4, 5.5];
-const reducedBloomIntensities = [0.4, 0.7, 1, 1.3, 1.6, 2];
-
-function Cell({ position, living, interact, setGameParameters, isRunning, bloom }) {
+function Cell({ position, living, interact, setGameParameters, bloom }) {
   const {gameParameters : {emissive, bloomIntensity, edgeColor}} = useContext(GameControlsContext);
-  //const {isActive, intensity} = bloom;
+
     return (
         <mesh onClick={() => {
             if (interact === true) {
