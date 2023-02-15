@@ -34,7 +34,6 @@ export const GameControlsContext = createContext();
 export const GameControlsProvider = ({children}) => {
     const [texture] = useState(new THREE.TextureLoader().load(img));
     const [controls, setControls] = useState({button: '', speedModifier: 0});
-    //const [bloom, setBloom] = useState(true);
     const [gameParameters, setGameParameters] = useState({
         isRunning: false,
         configuration: boardArray,
