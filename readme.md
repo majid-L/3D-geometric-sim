@@ -1,37 +1,6 @@
-<style type="text/css" rel="stylesheet">
-* { color: whitesmoke; }
+# Automatrix: a 3D React app featuring Three.js</span>
 
-h1 {
-    color: rgb(207, 143, 255);
-    font-size: 35px
-}
-
-img {
-    width: 600px;
-    border-radius: 10px;
-    border: 1px solid rgb(120, 120, 120);
-    box-shadow: 0 0 20px 3px rgb(238, 130, 238);
-    margin: 20px 0
-}
-
-span {
-    font-size: 22px;
-    line-height: 30px;
-    font-style: italic
-}
-
-h3 {
-    color: #DAA520
-}
-
-p {
-    margin-bottom: 20px
-}
-</style>
-
-# Automatrix: a 3D React app <br/> <span>Built with Three.js, featuring a highly interactable, multi-view geometric simulation.</span>
-
-<p>Welcome to Automatrix!</p>
+Welcome to Automatrix! This project delivers a 3D experience built around a highly interactable, multi-view geometric simulation.
 
 ## What is it?
 This React app is home to a cellular automaton simulator and the latest interpretation of John Conway's Game Of Life. The objective is to create a grid pattern that evolves in interesting, visually-striking ways, driven by the beauty of iterative mathematics. Each round is fully automated, meaning that the player only has to decide on a starting pattern and all subsequent computations are performed automatically by the program contained within.
@@ -40,13 +9,13 @@ This React app is home to a cellular automaton simulator and the latest interpre
 Visit the live website at [placeholder] to experience this app in all of its glory! And while you're there, why not also sign up for an account, create some patterns and add them to your account, and join the conversation by leaving a comment or two in the social area? There's a lot to do!
 
 ### 3D view
-<img src="https://github.com/3782291211/3D-geometric-sim/blob/main/3d.gif?raw=true">
+<img width=600 src="https://github.com/3782291211/3D-geometric-sim/blob/main/3d.gif?raw=true">
 
 <br/>
 
 ### 2D view
 
-<img src="https://github.com/3782291211/3D-geometric-sim/blob/main/2d.gif?raw=true">
+<img width=600 src="https://github.com/3782291211/3D-geometric-sim/blob/main/2d.gif?raw=true">
 
 <br/>
 
