@@ -28,8 +28,7 @@
     "react-spring": "8.0.19",
     "react-three-fiber": "5.3.18",
     "three": "^0.148.0",
-    "uuidv4": "^6.2.13",
-    "vite": "^4.0.4"
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
