@@ -4,7 +4,7 @@ import { useControls, button, buttonGroup } from "leva";
 import { useCallback } from "react";
 
 function PlayArea() {
-  const { gameParameters: {configuration, wrap, interval}, setGameParameters } = useContext(GameControlsContext);
+  const { gameParameters: {configuration, wrap, interval, physics}, setGameParameters } = useContext(GameControlsContext);
 
   const [isRunning, setIsRunning] = useState(false);
   const gameRef = useRef(isRunning);
@@ -27,9 +27,9 @@ function PlayArea() {
       }
     })
   });
-  //console.log(isRunning, gameRef.current);
 
   useControls({ reset : button(() => {
+    setIsRunning(false);
     gameRef.current = false;
     setGameParameters(prev => ({...prev, configuration: boardArray, sizeModifier: 0}));
   })});
@@ -42,8 +42,10 @@ function PlayArea() {
           return Math.random() > 0.7 ? 1 : 0;
         }));
       };
-      return {...prev, isRunning: false, configuration: randomBoard};
-    })
+      return {...prev, configuration: randomBoard};
+    });
+    setIsRunning(false);
+    gameRef.current = false;
   })});
 
   useControls({ clear : button(() => {
@@ -54,8 +56,8 @@ function PlayArea() {
     setGameParameters(prev => ({...prev, isRunning: false, configuration: emptyBoard}));
   })});
 
-  useControls({"  ": buttonGroup({
-    "size +": () => {
+  useControls({"board size": buttonGroup({
+    "inc": () => {
       setGameParameters(prev => {
         const copy = [...prev.configuration].map(m => m);
         const expanded = copy.map(arr => [0, ...arr, 0]);
@@ -64,7 +66,7 @@ function PlayArea() {
         return {...prev, configuration: expanded};
       })
     },
-    "size -": () => {
+    "dec": () => {
       setGameParameters(prev => {
         const copy = [...prev.configuration].map(m => m);
         const shrunkenArray = copy.filter((row, i, arr) => i > 0 && i < arr.length - 1).map(row => row.filter((row, i, arr) => i > 0 && i < arr.length - 1));
