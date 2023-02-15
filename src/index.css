@@ -54,6 +54,11 @@ main.tutorial {
   padding-bottom: 60px;*/
 }
 
+main.not-found {
+  position: absolute;
+  z-index: 9998;
+}
+
 
 img.tutorial_img {
   display: flow-root;
@@ -323,7 +328,7 @@ div.card {
   /* height: 60px; */
   position: absolute;
   top: 0;
-  z-index: 999;
+  z-index: 9999;
   justify-content: center;
 }
 
