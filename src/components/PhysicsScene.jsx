@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Physics, useBox, usePlane } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
 import { Center, PerspectiveCamera, Stars } from '@react-three/drei';
@@ -31,16 +31,14 @@ function PhysicsScene ({bloom}) {
   }
 
   function Box() {
-    const [ref, api] = useBox(() => ({ mass: 1, position : [0, 2, 0] }));
+    let [ref, api] = useBox(() => ({ mass: 0, position : [0, 15, 0] }));
+    const handleClick = () => {
+        [ref, api] = useBox(() => ({ mass: 1, position : [0, 15, 0] }));
+        api.velocity.set(-1, -1, -1);
+      }
     return (
       <mesh 
-      onClick={() => {
-      api.velocity.set(
-        +String(Math.random())[2]/2,
-        +String(Math.random())[2]/2,
-        +String(Math.random())[2]/2
-      );
-      }} 
+      onClick={handleClick} 
       ref={ref} 
       position={[0, 2, 0]}>
       <boxGeometry attach="geometry"/>
