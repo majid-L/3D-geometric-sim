@@ -11,3 +11,9 @@
 
 ### Credits
 Stars animation created by Paul Henschel (https://codesandbox.io/u/drcmda).
+
+<img src="react_cannon.gif">
+
+
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Cannon's ")
