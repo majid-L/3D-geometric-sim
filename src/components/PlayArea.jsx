@@ -5,7 +5,7 @@ import { useCallback } from "react";
 
 function PlayArea() {
 
-  const { gameParameters: {configuration, wrap, interval, physics}, setGameParameters } = useContext(GameControlsContext);
+  const { gameParameters: {configuration, wrap, interval}, setGameParameters } = useContext(GameControlsContext);
 
   const [isRunning, setIsRunning] = useState(false);
   const gameRef = useRef(isRunning);
