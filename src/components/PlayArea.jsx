@@ -4,6 +4,7 @@ import { useControls, button, buttonGroup } from "leva";
 import { useCallback } from "react";
 
 function PlayArea() {
+
   const { gameParameters: {configuration, wrap, interval, physics}, setGameParameters } = useContext(GameControlsContext);
 
   const [isRunning, setIsRunning] = useState(false);
