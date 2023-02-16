@@ -63,13 +63,18 @@ const handleSubmit = e => {
         setAvatarUrl('');
     })
   }
-}
+};
+
+const handleError = ({ currentTarget }) => {
+  currentTarget.onerror = null; // prevents looping
+  currentTarget.src=`avatar${[0, 1, 2, 3, 4, 5, 6][Math.floor(Math.random() * 7)]}.png`;
+};
 
 return (<main>
     <h1 className="profile_h1">Profile</h1>
 
     {userDetails && <div className="profile_card">
-    <img className="profile_img" src={userDetails.avatar_url}/>
+    <img className="profile_img" src={userDetails.avatar_url} onError={handleError}/>
     <div>
     <p style={{fontWeight: 'bold'}}>{userDetails.account_owner}</p>
     <p>{userDetails.username}</p>
