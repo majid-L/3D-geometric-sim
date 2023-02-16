@@ -24,10 +24,10 @@ function PatternCard ({id, username, pattern_name, avatar_url, created_at, patte
     <Card.Header>
         <Nav variant="pills" defaultActiveKey="#first">
           <Nav.Item>
-            <Nav.Link href="#first" id='set-3d' onClick={handleClick}>Go 3D</Nav.Link>
+            <Nav.Link id='set-3d' onClick={handleClick}>Go 3D</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="#link" id='set-2d' onClick={handleClick}>Go 2D</Nav.Link>
+            <Nav.Link id='set-2d' onClick={handleClick}>Go 2D</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link onClick={() => {
