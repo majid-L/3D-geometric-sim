@@ -26,8 +26,6 @@ export function Controls() {
     const { "3D text" : text} = threeDBoard && useControls({"3D text": true});
     const {interact} = useControls({interact: true});
 
-    // const {physics} = threeDBoard && useControls({physics: false});
-
     const {background} = twoDBoard && useControls({background: 'rgb(22, 19, 15)'});
     
     threeDBoard && useFrame(state => {
@@ -43,10 +41,6 @@ export function Controls() {
       setGameParameters(prev => ({...prev, floating3DText: text}));
     }, [text]);
     
-    // useEffect(() => {
-    //   setGameParameters(prev => ({...prev, physics}))
-    // }, [physics]);
-
     useEffect(() => {
       setGameParameters(prev => ({...prev, edgeColor }));
     }, [edgeColor]);

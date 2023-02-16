@@ -33,24 +33,6 @@ function BoardMesh ({bloom}) {
   };
 
   return (<mesh ref={mesh} scale={viewport.width < 97 ? viewport.width / 80 : 1}>
-    {/* <Physics allowSleep={false}
-  axisIndex={0}
-  broadphase={'Naive'}
-  defaultContactMaterial={ {contactEquationStiffness: 1e6 }}
-  gravity={[0, -9.81, 0]}
-  isPaused={false}
-  iterations={5}
-  maxSubSteps={10}
-  quatNormalizeFast={false}
-  quatNormalizeSkip={0}
-  shouldInvalidate={true}
-  // Maximum amount of physics objects inside your scene
-  // Lower this value to save memory, increase if 1000 isn't enough
-  size={1000}
-  solver={'GS'}
-  stepSize={1 / 60}
-  tolerance={0.001}>
-    <Debug color="black" scale={1.1}> */}
     <Table/>
     {boardConfig(configuration).map(cell => {
       return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={interact} physics={physics} setGameParameters={setGameParameters} bloom={bloom}/>
@@ -115,23 +97,3 @@ const props = {
     /** Movement factor (default: 1) */
     noise: 1,
   };
-
-
-/*
-{startStop: false, reset: false, faster: false, slower: false, edge: false, wrap: false, enableClick: false, disableClick: false, clear: false}
-*/
-
-/*
-<PerspectiveCamera makeDefault fov={75} position={[35, 30, 15]}/>
-*/
-
-/*
-
-function Zoom() {
-    const { zoom } = useControls({ zoom: { value: 0.5, min: 0.05, max: 1.6, step: 0.01 } })
-    return useFrame((state) => {
-      state.camera.zoom = THREE.MathUtils.lerp(state.camera.zoom, zoom * 5.3, 0.4)
-      state.camera.updateProjectionMatrix()
-    })
-  };
-*/

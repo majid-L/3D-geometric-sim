@@ -5,18 +5,6 @@ import { GameControlsContext } from "../contexts/GameControlsContext";
 import { usePlane } from "@react-three/cannon";
 import * as THREE from "three";
 
-/*function Plane({boxLength}) {
-  const [ref, api] = usePlane(() => ({ mass: 1, position: [boxLength / 2, -0.52, boxLength/2], type: "Static", rotation : [-Math.PI / 2, 0, 0] }));
-
-  return (
-    <mesh ref={ref} position={[100, 100, 100]} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry attach="geometry" args={[boxLength + 3, boxLength + 3]}/>
-      <meshLambertMaterial side={THREE.DoubleSide} color="rgb(0, 0, 0)" transparent={true} toneMapped={false} opacity={0} attach="material"/>
-    </mesh>
-   )
-}*/
-
-
 function Table() {
  const {texture, gameParameters: {configuration, floating3DText}} = useContext(GameControlsContext);
  

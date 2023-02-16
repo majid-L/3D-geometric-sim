@@ -53,7 +53,6 @@ const handleClick = () => {
       <Modal.Footer>
         <Button onClick={() => {
             if (showSuccess) {
-               //navigate('/3dgame');
                setPatternsData(prev => prev.filter(pattern => pattern._id !== props.id));
              };
             props.onHide();
