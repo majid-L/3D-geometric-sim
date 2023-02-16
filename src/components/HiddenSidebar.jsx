@@ -12,8 +12,12 @@ function HiddenSidebar({showSidebar, setShowSidebar}) {
         <Offcanvas.Body>
           <p style={{fontStyle: 'italic'}}>"Is it a game or is it reality? Am I an automaton or am I in control? Will I multiply, or die?"</p>
 
-          <p className="tips_title">About this game</p>
-          <p>Best thought of as a simulation rather than a game, Automatrix simulates a two-dimensional cellular automaton and is the latest interpretation of John Conway's Game Of Life. When you run the simulation, what you are seeing is a series of algorithmic computations which alter the binary state of individual cells, with each round of computations transforming the configuration of the pattern that you see on the board.</p><p>It may seem like a simple thing on the surface, but this game is based on deep complexity that spreads across various fields, several of which are mathematical in nature. It is a fascinating topic that deserves an in-depth exploration, especially for those who are numerically inclined.</p>
+          <p className="tips_title">Welcome to Automatrix!</p>
+          <p>Automatrix simulates a two-dimensional cellular automaton and is the latest interpretation of John Conway's Game Of Life. When you run the simulation, what you are seeing is a series of algorithmic computations which determine the binary state of each cell based on the state of its immediate neighbours. Each round of computations transforms the configuration of the pattern that you see on the board.</p>
+
+          <p>The aim of the game (or, more accurately, simulation) is to create a pattern that evolves in interesting, visually-striking ways.</p>
+
+          <p>It may seem like a simple thing on the surface, but this game is based on deep mathematical complexity, exemplified by the myriad complex patterns that have been constructed by enthusiasts over the years. It is a fascinating topic that deserves an in-depth exploration, especially for those who are numerically inclined.</p>
 
           <div style={{borderBottom: '2px solid grey', margin: '20px 0'}}/>
 
@@ -29,10 +33,15 @@ function HiddenSidebar({showSidebar, setShowSidebar}) {
           </ul>
 
           <p className="tips_title">Changing board size</p>
-          <p>To increase or decrease the size of the board, first pause the game, make the adjustment and then resume the game.</p>
+          <p>You can adjust the size of the board even while the game is running. Whatever size you choose will persist across both the 3D and 2D views.</p>
 
           <p className="tips_title">Effects</p>
-          <p>For the 3D board, there are several visual effects available to choose from, including block color, bloom and background scene. Make sure to give these a try!</p>
+          <p>There are several visual effects available to choose from, including block color, edge/shadow color, bloom color and intensity, and background scene. Make sure to give all of these a try!</p>
+
+          <p className="tips_title">Interact toggle</p>
+          <p>With interact enabled, you're able to click on a cell to animate or kill it. You can even do this while the game is running and observe the impact in real time.
+          </p>
+          <p>This feature comes in handy whenever your pattern reaches stasis. In such a situation, you can simply pause the game and click around the board to modify the configuration of your pattern.</p>
 
           <p className="tips_title">Edge type</p>
           <p>This controls the behaviour of the cells when they meet an edge. This has a significant impact on the way the game plays out.</p>
