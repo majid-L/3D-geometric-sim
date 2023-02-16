@@ -22,17 +22,17 @@ const location = /\d/.test(+useLocation().pathname[1]);
       <Navigation/>
       {location && <PlayArea/>}
       <Routes>
-        <Route path="3D-geometric-sim/" element={<Home/>}/>
-        <Route path="3D-geometric-sim/3dgame" element={<ThreeDimensionalGame/>}/>
-        <Route path="3D-geometric-sim/2dgame" element={<TwoDimensionalBoard/>}/>
-        <Route path="3D-geometric-sim/tutorial" element={<Tutorial/>}/>
-        <Route path="3D-geometric-sim/patterns" element={<Patterns/>}/>
-        <Route path="3D-geometric-sim/users" element={<Users/>}/>
-        <Route path="3D-geometric-sim/login" element={<Login/>}/>
-        <Route path='3D-geometric-sim/profile' element={<Profile/>}/>
-        <Route path="3D-geometric-sim/patterns/:username" element={<UserPatterns />}/>
-        <Route path="3D-geometric-sim/comments" element={<Comments/>}/>
-        <Route path="3D-geometric-sim/*" element={<NotFound/>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/3dgame" element={<ThreeDimensionalGame/>}/>
+        <Route path="/2dgame" element={<TwoDimensionalBoard/>}/>
+        <Route path="/tutorial" element={<Tutorial/>}/>
+        <Route path="/patterns" element={<Patterns/>}/>
+        <Route path="/users" element={<Users/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path="/patterns/:username" element={<UserPatterns />}/>
+        <Route path="/comments" element={<Comments/>}/>
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </div>
   );
