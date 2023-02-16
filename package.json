@@ -1,16 +1,15 @@
 {
-  "name": "3d-geometric-app",
+  "name": "3d-geometric-sim",
   "private": true,
   "version": "0.1.0",
-  "homepage": "https://3782291211.github.io/3D-geometric-sim",
+  "homepage": "http://3782291211.github.io/3D-geometric-sim",
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
     "@react-spring/three": "^9.6.1",
     "@react-three/cannon": "^6.5.2",
     "@react-three/drei": "^9.56.24",
@@ -20,12 +19,18 @@
     "bootstrap": "^5.2.3",
     "leva": "^0.9.34",
     "postprocessing": "^6.29.3",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
     "react-spring": "8.0.19",
     "react-three-fiber": "5.3.18",
     "three": "^0.148.0",
     "uuidv4": "^6.2.13"
+  },
+  "overrides": {
+    "react-refresh": "0.11.0"
   },
   "browserslist": {
     "production": [
@@ -38,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
