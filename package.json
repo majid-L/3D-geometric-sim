@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://3782291211.github.io/3D-geometric-sim",
+  "homepage": "https://3782291211.github.io/3d-geometric-sim/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
