@@ -25,12 +25,10 @@ Visit the live website at **[this link](https://3782291211.github.io/3D-geometri
 
 ### 3D view
 <img width=600 src="https://github.com/3782291211/3D-geometric-sim/blob/main/3d.gif?raw=true">
-<br/>
 
 ### 2D view
 
 <img width=600 src="https://github.com/3782291211/3D-geometric-sim/blob/main/2d.gif?raw=true">
-<br/>
 
 ## Key product features
 - 3D models created dynamically using centralised states synchronised across different views.
