@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/3D-geometric-sim/static/css/main.99f81f19.css",
+    "main.js": "/3D-geometric-sim/static/js/main.5250dac4.js",
+    "static/media/green.png": "/3D-geometric-sim/static/media/green.e814ffe6c3fe7d1db292.png",
+    "index.html": "/3D-geometric-sim/index.html",
+    "main.99f81f19.css.map": "/3D-geometric-sim/static/css/main.99f81f19.css.map",
+    "main.5250dac4.js.map": "/3D-geometric-sim/static/js/main.5250dac4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99f81f19.css",
+    "static/js/main.5250dac4.js"
+  ]
+}

@@ -2,7 +2,7 @@
   "name": "3d-geometric-sim",
   "private": true,
   "version": "0.1.0",
-  "homepage": "http://3782291211.github.io/3D-geometric-sim",
+  "homepage": "http://3782291211.github.io/3D-geometric-sim/#",
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
