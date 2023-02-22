@@ -3,6 +3,7 @@ import { getPatterns, getUsers } from "../api";
 import PatternCard from './PatternCard';
 import { Loading } from "./Loading";
 import Alert from 'react-bootstrap/Alert';
+import { Button } from "react-bootstrap";
 
 function Patterns() {
   const [patternsData, setPatternsData] = useState('');
@@ -46,6 +47,7 @@ function Patterns() {
         return <PatternCard key={pattern._id} id={pattern._id} username={pattern.username} pattern_name={pattern.pattern_name} avatar_url={pattern.avatar_url} created_at={pattern.created_at} pattern_body={pattern.pattern_body} setPatternsData={setPatternsData}/>
       })}
     </section> : null}
+    {!isLoading && <Button style={{margin: '-30px auto 60px'}} className="back-to-top" onClick={() => window.scrollTo(0, 0)} variant="primary">Back to top</Button>}
   </main>)
 
 }
