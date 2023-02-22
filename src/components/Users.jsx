@@ -3,6 +3,7 @@ import { getUsers } from "../api";
 import { UserCard } from "./UserCard";
 import {Loading} from './Loading';
 import Alert from 'react-bootstrap/Alert';
+import { Button } from "react-bootstrap";
 
 const ErrorAlert = ({error}) => {
   return <Alert style={{margin: '5px auto 0', maxWidth: '800px'}} key="info" variant="info">
@@ -38,6 +39,7 @@ return(
     return <UserCard key={_id} id={_id} username={username} accountOwner={account_owner} email={email} avatar={avatar_url} />
 })}
 </section>}
+{!isLoading && <Button style={{margin: '-30px auto 60px'}} className="back-to-top" onClick={() => window.scrollTo(0, 0)} variant="primary">Back to top</Button>}
 </main>
 );
 };
