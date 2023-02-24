@@ -17,15 +17,18 @@ const {gameParameters : {username : loggedInUser}} = useContext(GameControlsCont
 const [newComment, setNewComment] = useState('');
 const [alertMsg, setAlertMsg] = useState('');
 const [showAlert, setShowAlert] = useState(false);
+const [apiError, setApiError] = useState(false);
 const [successMsg, setSuccessMsg] = useState(false);
 const [showSuccess, setShowSuccess] = useState(false);
 
 const [confirmDelete, setConfirmDelete] = useState(false);
 
 useEffect(() => {
+  setApiError(false);
   setIsLoading(true);
   Promise.all([getComments(), getUsers()])
   .then(([{data: {comments}}, {data : {users}}]) => {
+    setIsLoading(false);
     setComments(() => {
       return comments.map(comment => {
         users.forEach(({username, avatar_url}) => {
@@ -39,8 +42,11 @@ useEffect(() => {
       })
     })
   }).catch(err => {
-    return;
-  }).finally(() => setIsLoading(false));
+    setIsLoading(false);
+    if (err.response.data) {
+      setApiError(err.response.data.msg);
+    };
+  });
 }, []);
 
 const handleSubmit = e => {
@@ -133,6 +139,8 @@ return(<main>
     </section>
 
     <h2 className="profile_h2">Viewing latest comments</h2>
+
+    {apiError && <Alert style={{maxWidth: '1000px', margin: '70px auto 0'}} key="danger" variant="danger">{apiError}</Alert>}
 
 {isLoading ? <Loading/> : comments.length ? <section className="comments_list">{comments.map(comment => {
     return <Card style={{ maxWidth: '1000px', margin: '10px', boxShadow: '0 0 6px 2px rgb(207, 137, 7)'}} key={comment._id}>
