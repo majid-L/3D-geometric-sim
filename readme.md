@@ -32,7 +32,8 @@ Visit the live website at **[this link](https://3782291211.github.io/3D-geometri
 
 ## Key product features
 - 3D models created dynamically using centralised states synchronised across different views.
-- Intearctive gameboard UI that provides the user with many ways to interact with the game and modify the visual display.
+- 3D scene with fully adjustable camera, click interactivity, postprocessing effects and complex dynamic functionality.
+- Intearctive gameboard UI that provides the user with many ways to modify the game and visual display.
 - CRUD functionality: a user can create a new account, update their account details, save/delete patterns and post/delete comments.
 - User authorisation provided by a Django/Python API, using JSON Web Tokens.
 - Login form validation.
@@ -40,10 +41,16 @@ Visit the live website at **[this link](https://3782291211.github.io/3D-geometri
 - Optimistic rendering.
 
 ## Libraries
-- Framework: **React**
-- 3D modelling: **Three.js** (via multiple React-specific declarative rendering packages)
-- Styling: **Bootsrap**
-- Game controls interface: **Leva** (authored by dbismut)
+Library | Purpose
+--- | ---
+React | Application framework
+Three.js* | 3D graphics
+Bootstrap | Styling
+Leva** | Game controls interface
+Axios | API requests
+
+\* via multiple React-specific declarative rendering packages <br>
+\** authored by dbismut
 
 ## Credits and contributions
 - 3D board mesh configuration, 3D mapping system and the 2D grid layout were created and written by **SamPetcher** (https://github.com/SamPetcher) as part of a collaborative development project.
