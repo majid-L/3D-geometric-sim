@@ -6,13 +6,8 @@ import { GameControlsContext } from "../contexts/GameControlsContext";
 function Cell({ position, living, interact, setGameParameters, bloom }) {
   const {gameParameters : {emissive, bloomIntensity, edgeColor, physics}} = useContext(GameControlsContext);
 
-  //const [cellRef, api] = useBox(() => ({ mass: 10, position })); ref={cellRef}
-
     return (
         <mesh onClick={() => {
-         // if (living && physics) {
-         //  api.velocity.set(10, 30, 1);
-        //  };
           if (interact === true) {
             setGameParameters(prev => {
               const newConfig = structuredClone(prev.configuration);
