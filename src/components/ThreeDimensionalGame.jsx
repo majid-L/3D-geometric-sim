@@ -57,7 +57,6 @@ function ThreeDimensionalGame() {
     {scene === "sky" && <Sky sunPosition={[0, 1, 3]} exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
     {!bloom && <Sparkles {...props}/>}
     <pointLight position={[10, 0, 10]}/>
-    {/* <PerspectiveCamera makeDefault fov={75} position={[35, 30, 5]}/> */}
     <CameraControls/>
     <OrbitControls/>
     <Center>
@@ -65,7 +64,6 @@ function ThreeDimensionalGame() {
       <EffectComposer multisampling={0} enabled={bloom}>
       <SMAA />
       <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.9} height={300} mipmapBlur />
-        {/* <Bloom luminanceThreshold={1} mipmapBlur /> */}
       {noise && <Noise
        premultiply // enables or disables noise premultiplication
        blendFunction={BlendFunction.ADD} // blend mode
