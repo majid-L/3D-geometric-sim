@@ -2,8 +2,6 @@ import { Float, Text3D, useMatcapTexture } from "@react-three/drei";
 import retro from '../assets/retro.json';
 import { useContext } from "react";
 import { GameControlsContext } from "../contexts/GameControlsContext";
-import { usePlane } from "@react-three/cannon";
-import * as THREE from "three";
 
 function Table() {
  const {texture, gameParameters: {configuration, floating3DText}} = useContext(GameControlsContext);
@@ -17,7 +15,6 @@ function Table() {
   
   return (
     <>
-    {/* {false && <Plane boxLength={boxLength}></Plane>} */}
     <mesh position={[boxLength / 2, -1, boxLength / 2]}>
       <meshMatcapMaterial
           opacity={1}
