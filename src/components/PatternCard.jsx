@@ -39,7 +39,6 @@ function PatternCard ({id, username, pattern_name, avatar_url, created_at, patte
           </Nav.Item>
         </Nav>
       </Card.Header>
-      {/* <Card.Img variant="top" src={avatar_url} /> */}
       <Card.Body>
         <Card.Title>"{pattern_name}"</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">By {username}</Card.Subtitle>
