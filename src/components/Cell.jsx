@@ -1,10 +1,9 @@
-import { useBox } from "@react-three/cannon";
 import { Edges } from "@react-three/drei"
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 
 function Cell({ position, living, interact, setGameParameters, bloom }) {
-  const {gameParameters : {emissive, bloomIntensity, edgeColor, physics}} = useContext(GameControlsContext);
+  const {gameParameters : {emissive, bloomIntensity, edgeColor}} = useContext(GameControlsContext);
 
     return (
         <mesh onClick={() => {
