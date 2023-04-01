@@ -25,7 +25,6 @@ useEffect(() => {
 function handleClick(patternBody) {
   return () => {
     const pattern = patternBody.split(" ").map(m => m.split("").map(m => +m));
-    //Array.from(Array(configuration.length), () => 0);
     setGameParameters(prev => ({...prev, isRunning: false, configuration: pattern}));
     navigate("3dgame");
   };
