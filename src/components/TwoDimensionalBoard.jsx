@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useContext } from "react";
 import { Controls } from "./Controls";
 import NewPattern from "./NewPattern";
-// import PlayArea from "./PlayArea";
 
 const TwoDimensionalBoard = () => {
 const { gameParameters: {configuration, interact, cellColor, boxShadow, background}, setGameParameters } = useContext(GameControlsContext);
@@ -11,7 +10,6 @@ const { gameParameters: {configuration, interact, cellColor, boxShadow, backgrou
 const gridcolumns = "1fr ".repeat(configuration.length);
 
 return (<>
-{/* <PlayArea/> */}
 <h1 style={{marginTop: '70px'}} className="tutorial_h1">Game Of Life in 2D</h1>
     <div className="cellboard" style={{ gridTemplateColumns: gridcolumns, backgroundColor: background }}>
       {configuration.map((row, i) => {
