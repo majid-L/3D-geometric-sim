@@ -54,7 +54,7 @@ return (
           </NavDropdown>}
           <Nav.Link style={{color: 'rgb(255, 165, 0)', fontWeight: 'bold'}} onClick={() => navigate("3dgame")}><ThreeD /></Nav.Link>
           <Nav.Link id="two-d-nav" onClick={() => navigate("2dgame")}>2D</Nav.Link>
-          <NavDropdown title="Featured patterns" id="collasible-nav-dropdown">
+          <NavDropdown title="Featured patterns" id="collasible-nav-dropdown" disabled={patterns.length === 0}>
             {patterns.length && patterns.map(pattern => {
               if (featuredPatterns.includes(pattern.pattern_name)) {
                  return <NavDropdown.Item key={pattern._id} onClick={handleClick(pattern.pattern_body)}>"{pattern.pattern_name}"</NavDropdown.Item>
