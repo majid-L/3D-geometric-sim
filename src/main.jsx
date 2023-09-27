@@ -4,13 +4,13 @@ import App from './App'
 import './index.css'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { GameControlsProvider } from './contexts/GameControlsContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <HashRouter>
+  <BrowserRouter>
     <GameControlsProvider>
      <App />
     </GameControlsProvider>
-    </HashRouter>,
+  </BrowserRouter>
 );
