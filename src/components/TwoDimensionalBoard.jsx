@@ -9,8 +9,9 @@ const { gameParameters: {configuration, interact, cellColor, boxShadow, backgrou
 
 const gridcolumns = "1fr ".repeat(configuration.length);
 
-return (<>
-<h1 style={{marginTop: '70px'}} className="tutorial_h1">Game Of Life in 2D</h1>
+return (
+  <main className="tutorial">
+    <h1 className="tutorial_h1">Game Of Life in 2D</h1>
     <div className="cellboard" style={{ gridTemplateColumns: gridcolumns, backgroundColor: background }}>
       {configuration.map((row, i) => {
         return row.map((cell, k) => {
@@ -30,7 +31,8 @@ return (<>
     </div>
     <NewPattern />
     <Controls/>
-</>);
+  </main>
+);
 };
 
 export default TwoDimensionalBoard;

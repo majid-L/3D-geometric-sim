@@ -6,16 +6,12 @@
   line-height: 24px;
   font-weight: 400;
   color-scheme: light dark;
-
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: rgb(127, 92, 217);*/
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
   background-color: #242424;
 }
 
@@ -25,12 +21,10 @@
   border: solid 2px white;
 }
 
-/*NEW* - height and width */
 body,
 main,
 .App {
   background-color: #242424 !important;
-  /* overflow-x: hidden; */
   width: 100%;
 }
 
@@ -49,9 +43,6 @@ main.tutorial {
   margin: auto;
   padding-bottom: 100px;
   height: 100%;
-  /* width: fit-content;
-  margin: 10px auto;
-  padding-bottom: 60px;*/
 }
 
 main.not-found {
@@ -73,13 +64,6 @@ img.user_img {
   width: 160px;
   border-radius: 50%;
 }
-
-/* .user_title {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 30px;
-} */
 
 .tutorial_intro {
   color: rgb(235, 216, 255);
@@ -123,23 +107,9 @@ img.user_img {
   font-weight: bold;
 }
 
-/*html, body, #root, .anim {
-  width: 100vw;
-  height: 100vh;
-  background: rgb(36, 36, 36);
-  background: linear-gradient(
-    184deg,
-    rgba(36, 36, 36, 1) 0%,
-    rgba(36, 36, 36, 1) 23%,
-    rgba(187, 188, 189, 1) 100%
-  );
-}*/
-
 html,
 body,
-/* #root, */
 .anim {
-  /*width: 100%;*/
   margin: 0;
   padding: 0;
 }
@@ -258,10 +228,6 @@ div.card {
   max-width: 330px
 }
 
-/* .card-body {
-  height: 430px;
-} */
-
 .card-title {
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -325,7 +291,6 @@ div.card {
 
 #nav {
   width: 100%;
-  /* height: 60px; */
   position: absolute;
   top: 0;
   z-index: 9999;
@@ -333,18 +298,16 @@ div.card {
 }
 
 .navbar-nav {
+  padding: 5px;
   align-items: center;
   flex-direction: flex-start;
+  gap: 8px
 }
 
 div.container {
   margin: 0 !important;
   max-width: 1200px !important
 }
-
-/* div.container > * {
-  width: 200px
-} */
 
 a.nav-link {
   padding: 8px 5px 5px !important
@@ -360,8 +323,6 @@ a.nav-link {
 div.modal {
   margin-top: 500px;
   width: 100vw;
-  /*position: absolute;
- z-index: 999;*/
 }
 
 div.user_title {
@@ -443,7 +404,7 @@ button#save {
 .leva-c-kWgxhW {
   position: absolute;
   left: 1vw;
-  margin-top: 150px;
+  margin-top: 160px;
 }
 
 .leva-c-kXfPOu {
@@ -606,14 +567,6 @@ button.leva-c-kobjwj {
 }
 
 @media (min-width: 1600px) {
-  /* button.btn-secondary,
-  #bg-nested-dropdown,
-  button.dropdown-toggle,
-  #save,
-  #effects {
-    border-radius: 0;
-  } */
-
   #effects {
     margin: -60px 0 0 2vw;
   }
